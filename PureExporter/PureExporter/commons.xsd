@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="v3.commons.pure.atira.dk" attributeFormDefault="unqualified" elementFormDefault="qualified"
+            targetNamespace="v3.commons.pure.atira.dk">
+
+    <xsd:simpleType name="double_2Decimals">
+        <xsd:restriction base="xsd:decimal">
+            <xsd:fractionDigits value="2" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="string_2048">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="2048"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="string_1024">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="1024"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="string_512">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="512"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="string_256">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="256"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="string_128">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="128"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="string_64">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="64"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="string_9">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="9"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="percent">
+        <xsd:restriction base="xsd:float">
+            <xsd:maxInclusive value="1" />
+            <xsd:minInclusive value="0" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="language">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[a-z]{2}|mul|und|mis" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="country">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[A-Z]{2}" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="visibility">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Public"/>
+            <xsd:enumeration value="Campus"/>
+            <xsd:enumeration value="Restricted"/>
+            <xsd:enumeration value="Confidential"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="classification">
+        <xsd:restriction base="tns:string_1024">
+            <xsd:pattern value="[a-zA-Z_0-9/]+" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="base64Binary">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[a-zA-Z0-9/+=]*" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="localized_string">
+        <xsd:sequence>
+            <xsd:element name="text" type="tns:localized_text" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="localized_text">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute type="tns:language" name="lang">
+                    <xsd:annotation>
+                        <xsd:documentation>An ISO 639-1 code</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute type="tns:country" name="country">
+                    <xsd:annotation>
+                        <xsd:documentation>An ISO 3166-1 code</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+	<xsd:complexType name="localized_string_256">
+		<xsd:sequence>
+			<xsd:element name="text" type="tns:localized_text_256" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="localized_text_256">
+		<xsd:simpleContent>
+			<xsd:extension base="tns:string_256">
+				<xsd:attribute type="tns:language" name="lang">
+					<xsd:annotation>
+						<xsd:documentation>An ISO 639-1 code</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute type="tns:country" name="country">
+					<xsd:annotation>
+						<xsd:documentation>An ISO 3166-1 code</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="localized_string_1024">
+		<xsd:sequence>
+			<xsd:element name="text" type="tns:localized_text_1024" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="localized_text_1024">
+		<xsd:simpleContent>
+			<xsd:extension base="tns:string_1024">
+				<xsd:attribute type="tns:language" name="lang">
+					<xsd:annotation>
+						<xsd:documentation>An ISO 639-1 code</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute type="tns:country" name="country">
+					<xsd:annotation>
+						<xsd:documentation>An ISO 3166-1 code</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="keywords" >
+        <xsd:sequence maxOccurs="unbounded" minOccurs="1">
+            <xsd:element name="logicalGroup" type="tns:logicalGroup" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="logicalGroup">
+        <xsd:sequence>
+            <xsd:element name="structuredKeywords" type="tns:structuredKeywords" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of keywordGroups if keywords should be placed in different groups</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="logicalName" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation>The logical name for the keyword group, if not a default group will be used</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="freeKeywords">
+        <xsd:sequence>
+            <xsd:element name="freeKeyword" type="tns:localized_string" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of free keywords</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="structuredKeywords">
+        <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+            <xsd:element name="structuredKeyword" type="tns:structuredKeyword">
+                <xsd:annotation>
+                    <xsd:documentation>List of structured keywords</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="structuredKeyword">
+        <xsd:sequence>
+            <xsd:element name="freeKeywords" type="tns:freeKeywords" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of free keywords that are related to the structured keyword</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="classification" type="tns:classification" use="optional">
+            <xsd:annotation>
+                <xsd:documentation>token for the structured keyword, if not set the keywords below will be read as free keywords not related to any structured keyword</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="contentReferences">
+        <xsd:sequence>
+            <xsd:element name="contentReference" type="tns:contentReference" maxOccurs="unbounded" minOccurs="1" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="contentReference">
+        <xsd:sequence>
+            <xsd:element name="contentName" type="tns:string_1024">
+                <xsd:annotation>
+                    <xsd:documentation>The name of the content, used for matching the content, if no ID is set</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute type="tns:string_1024" name="contentId">
+            <xsd:annotation>
+                <xsd:documentation>The source ID of the content</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="ids">
+        <xsd:sequence>
+            <xsd:element name="id" type="tns:id" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="id">
+        <xsd:simpleContent>
+            <xsd:extension base="tns:string_1024">
+                <xsd:annotation>
+                    <xsd:documentation>The value of the id</xsd:documentation>
+                </xsd:annotation>
+                <xsd:attribute name="type" type="tns:classification" use="required">
+                    <xsd:annotation>
+                        <xsd:documentation>token from the classification scheme /dk/atira/pure/{family}/classifiedsource</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="id" type="tns:string_1024" use="optional">
+                    <xsd:annotation>
+                        <xsd:documentation>Identification id of the classified id</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="descriptions">
+        <xsd:sequence>
+            <xsd:element name="description" type="tns:classified_localized_string" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="classified_localized_string">
+        <xsd:complexContent>
+            <xsd:extension base="tns:localized_string">
+                <xsd:attribute name="type" type="tns:classification" use="required">
+                    <xsd:annotation>
+                        <xsd:documentation>token from the classification e.g. /dk/atira/pure/upmproject/description</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="externalCollaborators">
+        <xsd:sequence>
+            <xsd:element name="collaborator" type="tns:externalCollaborator" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="externalCollaborator">
+        <xsd:all>
+            <xsd:element name="externalOrgName" type="tns:string_1024" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Name of an external organisation for this participant</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="externalOrgType" type="tns:classification" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>token from the classification scheme /dk/atira/pure/ueoexternalorganisation/ueoexternalorganisationtypes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="externalOrgId" type="tns:string_1024" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Source id of an external organisation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="leadCollaborator" type="xsd:boolean" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Source id of an external organisation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:all>
+        <xsd:attribute name="type" type="tns:classification" use="optional">
+            <xsd:annotation>
+                <xsd:documentation>token from classification scheme /dk/atira/pure/upm/collaborator</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="externalOrganisationAssociations">
+        <xsd:sequence>
+            <xsd:element name="externalOrganisationAssociation" type="tns:externalOrganisationAssociation" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="externalOrganisationAssociation">
+        <xsd:sequence>
+            <xsd:element name="externalOrgName" type="tns:string_1024" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Name of an external organisation for this participant</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="externalOrgType" type="tns:classification" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>token from the classification scheme /dk/atira/pure/ueoexternalorganisation/ueoexternalorganisationtypes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="externalOrgId" type="tns:string_1024" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Source id of an external organisation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+	<xsd:complexType name="externalOrganisation">
+		<xsd:sequence>
+			<xsd:element name="name" type="tns:string_1024" minOccurs="0" />
+			<xsd:element name="type" type="tns:classification" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Classification scheme /dk/atira/pure/ueoexternalorganisation/ueoexternalorganisationtypes</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="country" type="tns:classification" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Classification scheme /dk/atira/pure/core/countries</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="externalOrgId" type="tns:string_1024" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Source id of an external organisation</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+            <xsd:element name="externalOrgSource" type="tns:string_1024" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Source of an external organisation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+    <xsd:complexType name="documents">
+        <xsd:sequence>
+            <xsd:element name="documents" type="tns:document" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="document">
+        <xsd:all>
+            <xsd:element name="url" type="tns:url" minOccurs="0"/>
+            <xsd:element name="type" type="tns:string_1024" minOccurs="0"/>
+            <xsd:element name="filename" type="tns:string_1024" minOccurs="0"/>
+            <xsd:element name="version" type="tns:string_1024" minOccurs="0"/>
+            <xsd:element name="visibility" type="tns:string_1024" minOccurs="0"/>
+            <xsd:element name="embargo_date" type="tns:string_1024" minOccurs="0"/>
+            <xsd:element name="rights" type="tns:string_1024" minOccurs="0"/>
+            <xsd:element name="title" type="tns:string_1024" minOccurs="0"/>
+            <xsd:element name="mimetype" type="tns:string_1024" minOccurs="0"/>
+            <xsd:element name="filesize" type="tns:string_1024" minOccurs="0"/>
+            <xsd:element name="digest" type="tns:string_1024" minOccurs="0"/>
+        </xsd:all>
+        <xsd:attribute type="tns:string_1024" name="id" use="optional"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="url">
+        <xsd:all>
+            <xsd:element name="url" type="tns:string_1024" />
+            <xsd:element name="type" type="tns:string_1024" />
+            <xsd:element name="description" type="tns:localized_string" />
+        </xsd:all>
+    </xsd:complexType>
+
+    <xsd:complexType name="compoundDate">
+        <xsd:all>
+            <xsd:element name="year" type="tns:year" minOccurs="1" />
+            <xsd:element name="month" type="tns:month" minOccurs="0" />
+            <xsd:element name="day" type="tns:day" minOccurs="0" />
+        </xsd:all>
+    </xsd:complexType>
+
+    <xsd:complexType name="name">
+        <xsd:all>
+            <xsd:element name="firstname" type="tns:string_1024" minOccurs="0" />
+            <xsd:element name="lastname" type="tns:string_1024" minOccurs="0"/>
+        </xsd:all>
+    </xsd:complexType>
+
+	<xsd:complexType name="address">
+		<xsd:all>
+			<xsd:element name="country" type="tns:country" />
+			<xsd:element name="road" type="tns:string_1024" />
+			<xsd:element name="room" type="tns:string_1024" />
+			<xsd:element name="city" type="tns:string_1024" />
+			<xsd:element name="building" type="tns:string_1024" />
+			<xsd:element name="postalCode" type="tns:string_1024" />
+		</xsd:all>
+	</xsd:complexType>
+
+    <xsd:complexType name="CERIFAddress">
+        <xsd:all>
+            <xsd:element name="address1" type="tns:string_1024" />
+            <xsd:element name="address2" type="tns:string_1024" />
+            <xsd:element name="address3" type="tns:string_1024" />
+            <xsd:element name="address4" type="tns:string_1024" />
+            <xsd:element name="address5" type="tns:string_1024" />
+            <xsd:element name="postalCode" type="tns:string_1024" />
+            <xsd:element name="city" type="tns:string_1024" />
+            <xsd:element name="state" type="tns:string_1024" />
+            <xsd:element name="country" type="tns:country" />
+            <xsd:element name="geoLocation" type="tns:geoLocation" />
+        </xsd:all>
+    </xsd:complexType>
+
+	<xsd:complexType name="classifiedAddresses">
+		<xsd:sequence>
+			<xsd:element name="classifiedAddress" type="tns:classifiedAddress" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="classifiedAddress">
+		<xsd:all>
+			<xsd:element name="addressType" type="tns:classification" >
+				<xsd:annotation>
+					<xsd:documentation>The type of address. Must be a valid classification from the /dk/atira/pure/person/personaddresstype classification scheme</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="city" type="tns:string_1024" minOccurs="0"/>
+			<xsd:element name="postalCode" type="tns:string_1024" minOccurs="0"/>
+			<xsd:element name="street" type="tns:string_1024" minOccurs="0"/>
+			<xsd:element name="country" type="tns:country" minOccurs="0"/>
+			<xsd:element name="building" type="tns:string_1024" minOccurs="0"/>
+			<xsd:element name="displayFormat" type="tns:string_2048" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A formatted version of the address, that will be used instead of the default Pure formatting</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="subDivision" type="tns:classification" />
+			<xsd:element name="geoLocation" type="tns:geoLocation" />
+		</xsd:all>
+		<xsd:attribute type="tns:string_1024" name="id" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="geoLocation">
+		<xsd:all>
+			<xsd:element name="point" type="tns:string_512">
+				<xsd:annotation>
+					<xsd:documentation>A geospatial point. Google maps format</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="polygon" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>A geospatial polygon. Google maps format</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:all>
+	</xsd:complexType>
+
+	<xsd:complexType name="classifiedPhoneNumbers">
+		<xsd:sequence>
+			<xsd:element name="classifiedPhoneNumber" type="tns:classifiedPhoneNumber" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="classifiedPhoneNumber">
+		<xsd:all>
+			<xsd:element name="classification" type="tns:classification">
+				<xsd:annotation>
+					<xsd:documentation>The type of phone number. Must be a valid classification from the /dk/atira/pure/person/personphonenumbertype classification scheme</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="value" type="tns:string_64"/>
+		</xsd:all>
+		<xsd:attribute type="tns:string_1024" name="id" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="classifiedEmails">
+		<xsd:sequence>
+			<xsd:element name="classifiedEmail" type="tns:classifiedEmail" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="classifiedEmail">
+		<xsd:all>
+			<xsd:element name="classification" type="tns:classification">
+				<xsd:annotation>
+					<xsd:documentation>The type of email. Must be a valid classification from the /dk/atira/pure/person/personemailtype classification scheme</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="value" type="tns:string_256"/>
+		</xsd:all>
+		<xsd:attribute type="tns:string_1024" name="id" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="classifiedWebAddresses">
+		<xsd:sequence>
+			<xsd:element name="classifiedWebAddress" type="tns:classifiedWebAddress" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="classifiedWebAddress">
+		<xsd:all>
+			<xsd:element name="classification" type="tns:classification" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>The type of web address. Must be a valid classification from the /dk/atira/pure/person/personwebaddresstype classification scheme</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="value" type="tns:localized_string_1024" minOccurs="0"/>
+		</xsd:all>
+		<xsd:attribute type="tns:string_1024" name="id" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="organisation">
+        <xsd:all>
+            <xsd:element name="name" type="tns:localized_string" minOccurs="0"/>
+            <xsd:element name="name_variant" type="tns:classified_localized_string" minOccurs="0" />
+            <xsd:element name="workflow" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="type" type="xsd:string" minOccurs="0" />
+        </xsd:all>
+        <xsd:attribute type="xsd:string" name="id" use="optional"/>
+    </xsd:complexType>
+
+	<xsd:complexType name="internalExternalOrganisationAssociations">
+		<xsd:sequence>
+			<xsd:element name="internalExternalOrganisationAssociation" type="tns:internalExternalOrganisationAssociation" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="internalExternalOrganisationAssociation">
+		<xsd:choice>
+			<xsd:element name="organisation" type="tns:organisation" minOccurs="0"/>
+			<xsd:element name="externalOrganisation" type="tns:externalOrganisation" minOccurs="0"/>
+		</xsd:choice>
+	</xsd:complexType>
+
+	<xsd:complexType name="persons">
+		<xsd:sequence>
+			<xsd:element name="person" type="tns:person" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="person">
+		<xsd:sequence>
+			<xsd:element name="firstName" type="tns:string_1024" minOccurs="0"/>
+			<xsd:element name="lastName" type="tns:string_1024" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute type="tns:string_1024" name="id" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Id of the person, this would be the id from an external source i.e. HR system.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="classifiedFiles">
+		<xsd:sequence>
+			<xsd:element name="classifiedFile" type="tns:classifiedFile" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="classifiedFile">
+		<xsd:all>
+			<xsd:element name="classification" type="tns:classification" minOccurs="0"/>
+			<xsd:element name="fileUrl" type="tns:string_1024">
+				<xsd:annotation>
+					<xsd:documentation>HTTP url where the file can be found</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="fileName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="mimeType" type="xsd:string" minOccurs="0"/>
+		</xsd:all>
+		<xsd:attribute type="tns:string_1024" name="id" />
+	</xsd:complexType>
+
+	<xsd:complexType name="links">
+        <xsd:sequence>
+            <xsd:element name="link" type="tns:link" minOccurs="1" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="link">
+        <xsd:all>
+            <xsd:element name="url" type="xsd:string" />
+            <xsd:element name="type" type="tns:classification" minOccurs="0" />
+            <xsd:element name="description" type="tns:localized_string" minOccurs="0" />
+        </xsd:all>
+        <xsd:attribute type="tns:string_1024" name="id" />
+    </xsd:complexType>
+
+    <xsd:simpleType name="year">
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="1800" />
+            <xsd:maxInclusive value="2100" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="month">
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="1" />
+            <xsd:maxInclusive value="12" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="day">
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="1" />
+            <xsd:maxInclusive value="31" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="date">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}" />
+        </xsd:restriction>
+    </xsd:simpleType>
+	<xsd:complexType name="dateRange">
+		<xsd:all>
+			<xsd:element name="startDate" type="tns:date" />
+			<xsd:element name="endDate" type="tns:date" minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+
+    <xsd:complexType name="classifiedIdentification">
+        <xsd:choice>
+            <xsd:element ref="tns:non_explicit_id"/>
+            <xsd:element ref="tns:pure_id"/>
+            <xsd:element ref="tns:source_id"/>
+            <xsd:element ref="tns:classified_id"/>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:complexType name="identification">
+        <xsd:choice>
+            <xsd:element ref="tns:non_explicit_id"/>
+            <xsd:element ref="tns:pure_id"/>
+            <xsd:element ref="tns:source_id"/>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:element name="non_explicit_id" type="tns:string_1024">
+        <xsd:annotation>
+            <xsd:documentation>When using non explicit id matching, the lookup for the content is handled in the following way and order:
+                                1. Pure id matching
+                                2. Source id matching
+                                3. Classification defined id matching
+                                All the above steps are taken and the result is returned. If more than one result is matched, due to for example duplicate ids, then the first result matched will be returned.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="pure_id" type="xsd:long">
+        <xsd:annotation>
+            <xsd:documentation>Lookup is done through Pure id matching (the pure id is the id the content in question has inside Pure, and given by Pure when the content is created.)</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="source_id" type="tns:string_1024">
+        <xsd:annotation>
+            <xsd:documentation>Lookup is done through source id matching (the source id is the id the content was given when it was imported into Pure from an external source. This can be through synchronisation, import jobs etc.)</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="classified_id" type="tns:id">
+        <xsd:annotation>
+            <xsd:documentation>Lookup is done through classification defined id matching (classification defined ids are ids that content can be given inside Pure through the editor.)</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="metrics">
+        <xsd:complexType>
+            <xsd:sequence maxOccurs="unbounded">
+                <xsd:element name="metric">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="year" type="tns:year"/>
+                            <xsd:element name="type" type="tns:classification"/>
+                            <xsd:element name="category" type="tns:classification" />
+                            <xsd:element ref="tns:metricValues" />
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="metricValues">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="value">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="name" type="tns:string_64" />
+                            <xsd:element name="integerValue" type="xsd:integer" minOccurs="0"/>
+                            <xsd:element name="doubleValue" type="xsd:double" minOccurs="0"/>
+                            <xsd:element name="stringValue" type="tns:classification" minOccurs="0"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="comments">
+        <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+            <xsd:element name="comment">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="date" type="tns:date" minOccurs="0" />
+                        <xsd:element name="username" type="tns:string_256" minOccurs="0"/>
+                        <xsd:element name="text" type="tns:string_2048" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="gender">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="male"/>
+            <xsd:enumeration value="female"/>
+            <xsd:enumeration value="unknown"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="periode">
+        <xsd:sequence>
+            <xsd:element name="startdate" type="tns:compoundDate" minOccurs="1"/>
+            <xsd:element name="enddate" type="tns:compoundDate" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

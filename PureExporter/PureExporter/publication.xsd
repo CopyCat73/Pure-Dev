@@ -1,0 +1,1985 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:commons="v3.commons.pure.atira.dk"
+           xmlns="v1.publication-import.base-uk.pure.atira.dk"
+           attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="v1.publication-import.base-uk.pure.atira.dk">
+
+    <xs:import schemaLocation="commons.xsd" namespace="v3.commons.pure.atira.dk"/>
+
+    <xs:element name="publications">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="publication" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="publication" type="publicationType" abstract="true"/>
+    <xs:element name="contributionToJournal" type="contributionToJournalType" substitutionGroup="publication"/>
+    <xs:element name="chapterInBook" type="chapterInBookType" substitutionGroup="publication"/>
+    <xs:element name="contributionToConference" type="contributionToConferenceType" substitutionGroup="publication"/>
+    <xs:element name="contributionToSpecialist" type="contributionToSpecialistType" substitutionGroup="publication"/>
+    <xs:element name="patent" type="patentType" substitutionGroup="publication"/>
+    <xs:element name="other" type="otherType" substitutionGroup="publication"/>
+    <xs:element name="book" type="bookType" substitutionGroup="publication"/>
+    <xs:element name="workingPaper" type="workingPaperType" substitutionGroup="publication"/>
+    <xs:element name="nonTextual" type="nonTextualType" substitutionGroup="publication"/>
+    <xs:element name="memorandum" type="memorandumType" substitutionGroup="publication"/>
+    <xs:element name="contributionToMemorandum" type="contributionToMemorandumType" substitutionGroup="publication"/>
+    <xs:element name="thesis" type="thesisType" substitutionGroup="publication"/>
+
+    <xs:complexType name="publicationType" abstract="true">
+        <xs:sequence>
+            <xs:element name="peerReviewed" type="xs:boolean" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Peer reviewed - This can only be true if the publication type and category
+                        combination is peer reviewable
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="internationalPeerReviewed" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Internationally Peer Reviewed - This can only be true if the publication type and
+                        category combination is peer reviewable and the publication is marked as peerReviewed
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="acceptedDuplicate" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>If true, the publication will no longer be considered when searching for
+                        duplicates
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="publicationCategory" type="commons:classification" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Classification /dk/atira/pure/publication/category</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:choice>
+                <xs:element name="publicationStatus" type="commons:classification" minOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>This field is deprecated use publicationStatuses instead. Will be removed in
+                            5.5.0 (4.24.0) of Pure
+                        </xs:documentation>
+                        <xs:documentation>Classification /dk/atira/pure/publication/status</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="publicationStatuses" minOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>List of publication status</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+            <xs:element name="workflow" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Used to set the workflow state of the publication (UK workflow states: forApproval, approved)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="language" type="commons:classification" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Classification /dk/atira/pure/core/languages</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="title" type="commons:localized_string" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The publication title</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="subTitle" type="commons:localized_string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The publication subtitle</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="abstract" type="commons:localized_string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The publication abstract</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element ref="persons" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The person</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element ref="organisations" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The organisations related</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="owner" type="organisation" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The managing organisation of the publication, this must always be an internal
+                        organisation in Pure
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="publicationDate" type="commons:compoundDate" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>This field is deprecated use publicationStatuses instead. Will be removed in 5.5.0
+                        (4.24.0) of Pure
+                    </xs:documentation>
+                    <xs:documentation>The publication date</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="keywords" type="commons:keywords" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        publication keywords
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element ref="urls" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Links related to the publication
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element ref="electronicVersions" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Electronic versions (full texts, doi and links) related to the publication
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="additionalFiles" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Additional files related to the publication</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element ref="documents" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>This field is deprecated use electronicVersions instead. Will be removed in 5.5.0
+                        (4.24.0) of Pure
+                    </xs:documentation>
+                    <xs:documentation>Full text document related to the publication</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="existingStores" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        This element is for when full text files is already stored in an external repository and Pure is
+                        being configured to synchronise with the repository
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="transferToRepository" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Should the content be transfered to the repository, only use if the Pure installation is
+                        connected to a repository
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="dois" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>This field is deprecated use electronicVersions instead. Will be removed in 5.5.0
+                        (4.24.0) of Pure
+                    </xs:documentation>
+                    <xs:documentation>DOI's related to the publication</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="bibliographicalNotes" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="bibliographicalNote" type="commons:localized_string" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Text field for adding extra text field to a publication
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="visibility" type="commons:visibility" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        The visibility of the publication
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="externalIds" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        The visibility of the publication
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="miscellaneous" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Element that doesn't have a field representation in Pure, however data that doesn't fit into
+                        existing fields or the bibliographical note field,
+                        can be added in this field and will be available in the source data of the imported xml and be
+                        available for later import into Pure if applicable fields become available.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="articleProcessingCharge" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        APC paid is only supported if enabled in pure
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="comments" type="commons:comments" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        This element can be used to populate the comment field in history and comments on a publication.
+                        This can be used for i.e. library notes.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+
+        <xs:attribute type="commons:string_1024" name="id" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The external ID of the publication, this must be an unique value
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute type="commons:classification" name="subType" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    When searching for a subtype use the parent scheme /dk/atira/pure/researchoutput/researchoutputtypes
+                    The classification scheme per type:
+                    Book/report: /dk/atira/pure/researchoutput/researchoutputtypes/bookanthology
+                    Contribution to
+                    book/report:/dk/atira/pure/researchoutput/researchoutputtypes/contributiontobookanthology
+                    Contribution to conference:
+                    /dk/atira/pure/researchoutput/researchoutputtypes/contributiontoconference1
+                    Contribution to journal: /dk/atira/pure/researchoutput/researchoutputtypes/contributiontojournal
+                    Contribution to memorandum:
+                    /dk/atira/pure/researchoutput/researchoutputtypes/contributiontomemorandum
+                    Datasets: /dk/atira/pure/researchoutput/researchoutputtypes/dataset
+                    Memorandum: /dk/atira/pure/researchoutput/researchoutputtypes/memorandum
+                    Non-textual: /dk/atira/pure/researchoutput/researchoutputtypes/nontextual
+                    Other contribution: /dk/atira/pure/researchoutput/researchoutputtypes/othercontribution
+                    Patent: /dk/atira/pure/researchoutput/researchoutputtypes/patent
+                    Specialist publication: /dk/atira/pure/researchoutput/researchoutputtypes/contributiontoperiodical
+                    Thesis: /dk/atira/pure/researchoutput/researchoutputtypes/thesis
+                    Working paper: /dk/atira/pure/researchoutput/researchoutputtypes/workingpaper
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="contributionToJournalType">
+        <xs:complexContent>
+            <xs:extension base="publicationType">
+                <xs:sequence>
+                    <xs:element name="pages" type="commons:string_128" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Pages (from-to) format can be used, but there is not restrictions
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="numberOfPages" type="xs:integer" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The number of pages in the contributed publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="articleNumber" type="commons:string_256" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>The article number</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="journalNumber" type="commons:string_64" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The journal number
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="journalVolume" type="commons:string_128" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The volume of the journal
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="earlyOnlineDate" type="commons:date" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Use if the publication has an early online date format dd-mm-yyyyy
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="journal">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The journal the article was posted in
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="event" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                If the article is related to an event
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="chapterInBookType">
+        <xs:complexContent>
+            <xs:extension base="publicationType">
+                <xs:sequence>
+                    <xs:element name="pages" type="commons:string_128" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Pages (from-to) format can be used, but there is not restrictions
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="numberOfPages" type="xs:integer" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The number of pages in the contributed publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="articleNumber" type="commons:string_256" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The article number in the contributed publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="edition" type="commons:string_64" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The edition of the host publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="placeOfPublication" type="commons:string_1024" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The place of the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="volume" type="commons:string_128" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The volume of the host publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="printIsbns" type="isbns" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The printed isbns
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="electronicIsbns" type="isbns" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The electronic isbns
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="hostPublicationTitle" type="commons:string_1024">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The host publication title
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="hostPublicationSubTitle" type="commons:string_1024" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The subtitle of the host publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="publisher" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The publisher of the host publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="editors" type="editors" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The editor of the host publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="series" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The series the publication is related to
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="event" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The event the publication is related to
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="contributionToConferenceType">
+        <xs:complexContent>
+            <xs:extension base="publicationType">
+                <xs:sequence>
+                    <xs:element name="pages" type="commons:string_128" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Pages (from-to) format can be used, but there is not restrictions
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="numberOfPages" type="xs:integer" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The number of pages in the contributed publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="event" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The event related to the conference
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="contributionToSpecialistType">
+        <xs:complexContent>
+            <xs:extension base="publicationType">
+                <xs:sequence>
+                    <xs:element name="pages" type="commons:string_128" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Pages (from-to) format can be used, but there is not restrictions
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="numberOfPages" type="xs:integer" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The number of pages in the contributed publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="number" type="commons:string_64" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                the number of specialist publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="volume" type="commons:string_128" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                the volume of specialist publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="journal" minOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The specialist publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="publisher" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The publisher of the specialist publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="patentType">
+        <xs:complexContent>
+            <xs:extension base="publicationType">
+                <xs:sequence>
+                    <xs:element name="ipc" type="commons:string_1024" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The international patent classification
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="patentNumber" type="commons:string_256" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The patent number
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="priorityDate" type="commons:date" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The priority date
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="priorityNumber" type="commons:string_1024" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The priority number
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="otherType">
+        <xs:complexContent>
+            <xs:extension base="publicationType">
+                <xs:sequence>
+                    <xs:element name="shortDescription" type="commons:string_256" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Short description of publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="outputMedia" type="commons:string_256" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The type of output media
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="numberOfPages" type="xs:integer" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The number of pages
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="placeOfPublication" type="commons:string_1024" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Place of publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="volume" type="commons:string_128" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The volume of the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="edition" type="commons:string_64" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The edition of the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="printIsbns" type="isbns" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The printed isbns
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="electronicIsbns" type="isbns" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The electronic isbns
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="series" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The publication serie
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="publisher" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The publisher of the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="bookType">
+        <xs:complexContent>
+            <xs:extension base="publicationType">
+                <xs:sequence>
+                    <xs:element name="numberOfPages" type="xs:integer" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The number of pages
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="placeOfPublication" type="commons:string_1024" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The place of publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="edition" type="commons:string_64" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The publication edition
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="volume" type="commons:string_128" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The publication volume
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="printIsbns" type="isbns" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The printed isbns
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="electronicIsbns" type="isbns" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The electronic isbns
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="commissioningBody" type="commons:externalOrganisationAssociation" minOccurs="0"
+                                maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>This field is deprecated use commissioningBodyExternalOrganisation
+                                instead. Will be removed in 5.5.0 (4.24.0) of Pure
+                            </xs:documentation>
+                            <xs:documentation>
+                                The commissioning body for the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="commissioningBodyExternalOrganisation" type="externalOrganisation" minOccurs="0"
+                                maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The commissioning body for the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="series" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                If the publication is part of a serie
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="publisher" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The publisher of the publication, if not specified a publisher with the name 'Unknown
+                                Publisher' will be created
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="workingPaperType">
+        <xs:complexContent>
+            <xs:extension base="publicationType">
+                <xs:sequence>
+                    <xs:element name="pages" type="commons:string_128" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Pages (from-to) format can be used, but there is not restrictions
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="numberOfPages" type="xs:integer" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The number of pages
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="placeOfPublication" type="commons:string_1024" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The place of publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="volume" type="commons:string_128" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The publisher volume for the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="publisher" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The publisher for the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="printIsbns" type="isbns" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The printed isbns
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="electronicIsbns" type="isbns" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The electronic isbns
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="series" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                If the publication is part of a series
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="nonTextualType">
+        <xs:complexContent>
+            <xs:extension base="publicationType">
+                <xs:sequence>
+                    <xs:element name="outputMedia" type="commons:classification" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Classification scheme /dk/atira/pure/researchoutput/nontextual/mediatypes
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="size" type="commons:string_64" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The size of the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="placeOfPublication" type="commons:string_1024" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The place of the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="edition" type="commons:string_64" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The publisher edition of the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="publisher" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The publisher of the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="event" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The event of the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="memorandumType">
+        <xs:complexContent>
+            <xs:extension base="publicationType">
+                <xs:sequence>
+                    <xs:element name="projectNumber" type="commons:string_64" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The project or case number for the memorandum
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="journalNumber" type="commons:string_64" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The journal or file number for the memorandum
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="dateFinished" type="commons:date" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The finishing or case date
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="applicant" type="externalOrganisation" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The applicant
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="series" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                If the memorandum is part of a series
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="contributionToMemorandumType">
+        <xs:complexContent>
+            <xs:extension base="publicationType">
+                <xs:sequence>
+                    <xs:element name="projectNumber" type="commons:string_64" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The project or case number for the memorandum
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="journalNumber" type="commons:string_64" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The journal or file number for the memorandum
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="dateFinished" type="commons:date" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The finishing or case date
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="applicant" type="externalOrganisation" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The applicant
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="series" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                If the memorandum is part of a series
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="thesisType">
+        <xs:complexContent>
+            <xs:extension base="publicationType">
+                <xs:sequence>
+                    <xs:element name="qualification" type="commons:classification" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Classification scheme /dk/atira/pure/thesis/qualification
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="awardingInstitution" type="organisation" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The awarding institution
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="thesisSupervisors" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The thesis supervisors
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="sponsors" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The sponsors
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="awardDate" type="commons:date" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The date of the award
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="publisher" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The publisher of the thesis
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="edition" type="commons:string_64" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The edition of the host publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="placeOfPublication" type="commons:string_1024" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The place of the publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="printIsbns" type="isbns" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The printed ISBNs
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="electronicIsbns" type="isbns" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The electronic ISBNs
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="numberOfPages" type="xs:integer" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The number of pages in the contributed publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="persons">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="author" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="role" type="commons:classification">
+                                <xs:annotation>
+                                    <xs:documentation>The classification schemas per publication type
+                                        Book/report: /dk/atira/pure/researchoutput/roles/bookanthology
+                                        Contribution to
+                                        book/report:/dk/atira/pure/researchoutput/roles/contributiontobookanthology
+                                        Contribution to conference:
+                                        /dk/atira/pure/researchoutput/roles/contributiontoconference1
+                                        Contribution to journal:
+                                        /dk/atira/pure/researchoutput/roles/contributiontojournal
+                                        Contribution to memorandum:
+                                        /dk/atira/pure/researchoutput/roles/contributiontomemorandum
+                                        Memorandum: /dk/atira/pure/researchoutput/roles/memorandum
+                                        Non-textual: /dk/atira/pure/researchoutput/roles/nontextual
+                                        Other contribution: /dk/atira/pure/researchoutput/roles/othercontribution
+                                        Patent: /dk/atira/pure/researchoutput/roles/patent
+                                        Specialist publication:
+                                        /dk/atira/pure/researchoutput/roles/contributiontoperiodical
+                                        Thesis: /dk/atira/pure/researchoutput/roles/thesis
+                                        Working paper: /dk/atira/pure/researchoutput/roles/workingpaper
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element ref="person" minOccurs="0"/>
+                            <xs:element ref="organisations" minOccurs="0"/>
+                            <xs:element name="groupAuthor" type="commons:string_1024" minOccurs="0"/>
+                            <xs:element name="authorContributionPercent" type="commons:percent" minOccurs="0"/>
+                            <xs:element name="authorContributionDescription" type="xs:string" minOccurs="0"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="person">
+        <xs:annotation>
+            <xs:documentation>
+                Regarding the ID on the person, the ID on the person mostly signifies that the author is assigned a
+                person from another system. The ID on the person is in this case the ID of the person in the HR system
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="fullName" type="commons:string_2048" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Use if name is not applicable in the firstname and lastname fields
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="firstName" type="commons:string_1024" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            first name of the person
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="lastName" type="commons:string_1024" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            last name of the person
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="workflow" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Used if the person is not matched to a person in Pure. It is then possible to set the
+                            workflow of the created external person
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:all>
+            <xs:attributeGroup ref="id"/>
+            <xs:attribute type="xs:boolean" name="external" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        set to true if the person should be handled as an external person
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="organisations">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="organisation" type="organisation" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="organisation">
+        <xs:sequence>
+            <xs:element name="name" type="commons:localized_string" minOccurs="0"/>
+            <xs:element ref="nameVariants" minOccurs="0"/>
+            <xs:element name="workflow" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Used if the organisation is not matched to an organisation in Pure. It is then possible to set
+                        the workflow of the created external organisation
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attributeGroup ref="id"/>
+    </xs:complexType>
+
+    <xs:element name="nameVariants">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nameVariant" type="nameVariant" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="nameVariant">
+        <xs:complexContent>
+            <xs:extension base="commons:localized_string">
+                <xs:attribute type="commons:classification" name="type" use="required">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Classification scheme /dk/atira/pure/organisation/namevariants
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="journal">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="title" type="commons:string_512" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The journal title. Title is a required field when creating a new journal (if journal id is
+                            not provided)
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="printIssns" type="issns" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The printed issns
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="electronicIssns" type="issns" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The electronic issns
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="workflow" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Used to set the workflow state, if the journal is not matched to an journal in Pure
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:all>
+            <xs:attributeGroup ref="id"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="issns">
+        <xs:sequence>
+            <xs:element name="issn" type="commons:string_9" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        ISSN for the publication xxxx-yyyy format
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="publicationDate">
+        <xs:sequence>
+            <xs:element name="year" type="commons:year" minOccurs="1"/>
+            <xs:element name="month" type="commons:month" minOccurs="0"/>
+            <xs:element name="day" type="commons:day" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="electronicVersions">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="electronicVersion" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="electronicVersion" type="electronicVersionType" abstract="true"/>
+
+    <xs:element name="electronicVersionFile" type="electronicVersionFileType" substitutionGroup="electronicVersion"/>
+    <xs:element name="electronicVersionDOI" type="electronicVersionDOIType" substitutionGroup="electronicVersion"/>
+    <xs:element name="electronicVersionLink" type="electronicVersionLinkType" substitutionGroup="electronicVersion"/>
+
+    <xs:complexType name="electronicVersionType">
+        <xs:sequence>
+            <xs:element name="version" type="commons:classification" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Classification scheme /dk/atira/pure/publication/electronicversion/versiontype
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="licence" type="commons:classification" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Classification scheme /dk/atira/pure/document/licences
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="otherLicenceUrl" type="commons:string_256" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        If licence element is set to other, this element can be used for the link
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicAccess" type="commons:classification" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Classification scheme /dk/atira/pure/core/openaccesspermission
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="embargoStartDate" type="commons:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        if publicAccess is set to embargoed, this field is used for setting the start date of the
+                        embargo
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="embargoEndDate" type="commons:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        if publicAccess is set to embargoed, this field is used for setting the end date of the embargo
+                        (Release date)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="electronicVersionFileType">
+        <xs:complexContent>
+            <xs:extension base="electronicVersionType">
+                <xs:sequence>
+                    <xs:element name="title" type="commons:string_1024" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Document title for the file
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="rightsStatement" type="commons:string_1024" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                If custom rights statements is enabled in the editor, this field can be used for
+                                importing the statements
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="file" type="file">
+                        <xs:annotation>
+                            <xs:documentation>
+                                File data for the electronic version
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="electronicVersionDOIType">
+        <xs:complexContent>
+            <xs:extension base="electronicVersionType">
+                <xs:sequence>
+                    <xs:element name="doi" type="commons:string_1024" minOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The DOI for the file
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="electronicVersionLinkType">
+        <xs:complexContent>
+            <xs:extension base="electronicVersionType">
+                <xs:sequence>
+                    <xs:element name="link" type="commons:string_1024">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The Link for the file
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="additionalFiles">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="additionalFile" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="additionalFile">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="file" type="file">
+                    <xs:annotation>
+                        <xs:documentation>
+                            File data for the electronic version
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="title" type="commons:string_1024" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Document title for the file
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="publicAccess" type="commons:classification">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Classification scheme /dk/atira/pure/core/openaccesspermission
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="embargoStartDate" type="commons:date" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            if publicAccess is set to embargoed, this field is used for setting the start date of the
+                            embargo
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="embargoEndDate" type="commons:date" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            if publicAccess is set to embargoed, this field is used for setting the end date of the
+                            embargo (Release date)
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="licence" type="commons:classification" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Classification scheme /dk/atira/pure/document/licences
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="otherLicenceUrl" type="commons:string_256" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            If licence element is set to other, this element can be used for the link
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="file">
+        <xs:all>
+            <xs:element name="filename" type="commons:string_1024">
+                <xs:annotation>
+                    <xs:documentation>
+                        HTTP, file, FTP is supported. HTTPS is supported only if the remote server uses a trusted
+                        certificate. If the remote server uses a self-signed certificate,
+                        the JVM running Pure will need an updated keystore.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="mimetype" type="commons:string_1024" minOccurs="0"/>
+            <xs:element name="filesize" type="xs:long" minOccurs="0"/>
+            <xs:element name="source" type="commons:string_1024" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        The store that the full text is located in
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="externalRepositoryState" type="externalRepositoryStateType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        If the Pure installation is connected to a external repository, such as DSPace or Eprints, this
+                        can be used to set the state of the document
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:all>
+        <xs:attribute type="commons:string_1024" name="id" use="optional"/>
+    </xs:complexType>
+
+    <xs:element name="documents">
+        <xs:annotation>
+            <xs:documentation>This field is deprecated. Use electronicVersions instead. Will be removed in 5.5.0
+                (4.24.0) of Pure
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="document" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="type" type="commons:classification" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Classification schema /dk/atira/pure/core/document/types
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="filename" type="commons:string_1024" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Url for the document. File, HTTP and FTP is supported
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="filesize" type="xs:long" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        The filesize of the file
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="mimetype" type="commons:string_1024" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        The mimetype of the file, if not set default value will be used
+                                        application/octet-stream
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="version" type="commons:classification" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Classification schema /dk/atira/pure/core/document/versiontypes
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="visibility" type="commons:visibility" minOccurs="0"/>
+
+                            <xs:element name="embargoDate" type="commons:date" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Use if the publication has an embargo date the format is dd-mm-yyyy
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="rights" type="commons:string_1024" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        If the file should have a specific rights statement text
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="source" type="commons:string_1024" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        The name of the store that the full text is located in (used for files that will
+                                        be served from an external repository)
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="externalRepositoryState" type="externalRepositoryStateType" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        If the Pure installation is connected to a external repository as DSPace,
+                                        Eprints etc., this can be used to set the state of the document
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="id" use="optional"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="existingStores">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="existingStore" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="existingStore">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="storeName" type="xs:string" minOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            If the Pure installation is connected to a external repository as DSPace, Eprints etc. this
+                            can be used to set the state of the document
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="storeContentId" type="xs:string" minOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The content ID in the external repository
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="updateRequired" type="xs:boolean" minOccurs="0" default="false">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Set to 'true' if content metadata should be updated in the store
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="externalRepositoryStateType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="STORED">
+                <xs:annotation>
+                    <xs:documentation>
+                        Full text file is already stored in external repository
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AWAITING_CREATION">
+                <xs:annotation>
+                    <xs:documentation>
+                        Full text file will be uploaded to the external repository
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="dois">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="doi" type="commons:string_1024" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The Digital Object Identifier for the publication
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="urls">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="url" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="url">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="url" type="commons:string_1024" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            An URL
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="description" type="commons:localized_string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Description of the URL
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="type" type="commons:classification" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Classification scheme /dk/atira/pure/links/researchoutput
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="sponsors">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="sponsor" type="externalOrganisation" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="event">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="type" type="commons:classification" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Classification scheme /dk/atira/pure/event/eventtypes
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="title" type="commons:localized_string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Title of the event
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="description" type="commons:localized_string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Description of the event
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="city" type="commons:string_256" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            City were the event was held
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="location" type="commons:string_256" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Location where the event was held
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="country" type="commons:classification" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Classification scheme /dk/atira/pure/core/countries
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+                <xs:element name="startDate" type="commons:date" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Start date of the event format dd-mm-yyyy
+                            Start date is a required field when creating a new event (if event id is not provided)
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="endDate" type="commons:date" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            end date of the event format dd-mm-yyyy
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="degreeOfRecognition" type="commons:classification" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Classification scheme /dk/atira/pure/event/degreeofrecognition
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="webAddress" type="commons:string_1024" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Url to the event
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="workflow" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Used if the event is not matched to a person in Pure. It is then possible to set the
+                            workflow of the created event
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+            <xs:attributeGroup ref="id"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="externalIds">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="id" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="id">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="type" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Attribute is used as the key for the ID, so e.g. Scopus, WOS or any other value is
+                            applicable
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:element name="miscellaneous">
+        <xs:annotation>
+            <xs:documentation>
+                This field is not imported into any field in Pure.It is here to ensure data will be readable in the
+                source data XML inside the Pure editor. This is for the data that should not be lost during conversion
+                from other systems
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="entry" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="entry">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute type="xs:string" name="key"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="publisher">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="name" type="commons:string_1024" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Name of the publisher
+                            Name is a required field when creating a new publisher (if publisher id is not provided)
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="workflow" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Used if the person is not matched to a person in Pure. It is then possible to set the
+                            workflow of the created external person
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:all>
+            <xs:attributeGroup ref="id"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="isbns">
+        <xs:sequence>
+            <xs:element name="isbn" type="commons:string_64" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="editors">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="editor" type="commons:name"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="series">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serie" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="name" type="commons:string_1024" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        The series name
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="publisherName" type="commons:string_1024" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        The name of the publisher of the series
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="volume" type="commons:string_64" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        The series volume
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="number" type="commons:string_64" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        The series number
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="printIssn" type="commons:string_9" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        The print ISSN
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="electronicIssn" type="commons:string_9" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        The electronic ISSN
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="thesisSupervisors">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="thesisSupervisor" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element ref="person"/>
+                            <xs:element name="role" type="xs:string" minOccurs="1"/>
+                        </xs:all>
+                        <xs:attributeGroup ref="id"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="externalOrganisation">
+        <xs:sequence>
+            <xs:element name="name" type="commons:string_1024"/>
+            <xs:element name="type" type="commons:classification">
+                <xs:annotation>
+                    <xs:documentation>
+                        Classification scheme /dk/atira/pure/ueoexternalorganisation/ueoexternalorganisationtypes
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="country" type="commons:classification" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Classification scheme /dk/atira/pure/core/countries
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attributeGroup ref="id"/>
+    </xs:complexType>
+
+    <xs:element name="publicationStatuses">
+        <xs:complexType>
+            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="publicationStatus" type="publicationStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="publicationStatus">
+        <xs:all>
+            <xs:element name="statusType" type="commons:classification" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Classification scheme /dk/atira/pure/publication/status
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="date" type="commons:compoundDate" minOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:attributeGroup name="id">
+        <xs:attribute name="id" type="commons:string_1024" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    ID of the external entity. If it is not found in Pure, an element with this ID will be created for
+                    most types
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="source" type="commons:string_1024" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Source can be used to hint to Pure, when there are two entities that match during the ID search,
+                    which one to prefer.
+                    i.e. organisation A has a synchronised ID "1234" and organisation B was created by pure using ID
+                    1234. This would cause both to match, and the source can be used to hint the correct one
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+
+    <xs:complexType name="articleProcessingChargeInfo">
+        <xs:sequence>
+            <xs:element name="articleProcessingChargePaid" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>
+                        This boolean describes whether APC has been paid.
+                        TRUE if YES
+                        FALSE if NO
+                        NOT SET is represented by omitting articleProcessingCharge entry entirely
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="paidArticleProcessingCharge" type="commons:double_2Decimals" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The amount paid in the currency specified</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="currencyArticleProcessingChargeCurrency" type="commons:classification" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Classification scheme /dk/atira/pure/core/isocurrencies
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="commons:double_2Decimals" name="paidArticleProcessingChargeSystem" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The amount paid in the currency of the system</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="articleProcessingCharge" type="articleProcessingChargeInfo">
+        <xs:annotation>
+            <xs:documentation>APC paid is only supported if enabled in pure</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+</xs:schema>
