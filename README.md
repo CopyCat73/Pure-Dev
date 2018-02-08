@@ -15,4 +15,4 @@ Clone or fork the PureExporter code as you see fit. The solution contains two pr
 
 Download the latest installer provided [here](https://github.com/CopyCat73/Pure-Dev/blob/master/Pure%20Exporter%20Installer.zip). Unzip and run setup.exe to start the install. 
 
-Please refer to the installation readme for further instructions. 
+Please refer to the installation [readme](https://github.com/CopyCat73/Pure-Dev/blob/master/INSTALL.md) for further instructions. 
