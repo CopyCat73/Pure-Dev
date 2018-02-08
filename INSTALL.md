@@ -32,9 +32,20 @@ On this tab enter the url to your *new* api. Make sure to use "https" and put a 
 
 ![firstrun_3](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/firstrun_3.png)
 
-Click save and if the api setup is correct, the status bar at the top should say "connected". 
+Click save and if the api setup is correct, the status bar at the top should say "connected": 
 
 ![firstrun_4](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/firstrun_4.png)
+
+Three customizable files are needed to handle imports and exports. Click on each "select" button and select the appropriate file. 
+
 ![firstrun_5](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/firstrun_5.png)
+
+For the publication definition select the publication.xsd file. 
+
 ![firstrun_6](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/firstrun_6.png)
+
+The conversion XSLT file is called PureApiToImport.xslt. The modification XSLT is called PureImportModifications.xslt.
 ![firstrun_7](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/firstrun_7.png)
+The file settings should now show the same as in the screenshot above. You're now done setting up the app. 
+
+Please refer to the usage [readme](https://github.com/CopyCat73/Pure-Dev/blob/master/USAGE.md) for further instructions. 
