@@ -32,9 +32,8 @@ Switch the option on and type your required url in the box. The exportsetname is
 
 ![filesettings_2](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/filesettings_2.png)
 
-
-
-The pdf's can then be placed at that location and the metadata imported in the bulk loader will reference that location for the files. Also make sure to turn off cover sheets. 
+In the example above, the metadata export will point to the files at "http://yourserver.com/my_export_set_/nameofthepdf.pdf
+The exported pdf's can then be placed at that web location. This way a complete set can be moved from one site to another for instance. Also make sure to disable cover functionality when exporting full text. 
 
 
 
