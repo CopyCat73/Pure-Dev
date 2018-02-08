@@ -5,7 +5,7 @@
 Note: the application can be used to perform bulk modifications on Pure data. This is a rather complicated workflow that is not ideal. The functionality is included because I needed it and as a means to show what Pure itself is missing. Please refer to the  [advanced readme](https://github.com/CopyCat73/Pure-Dev/blob/master/ADVANCEDUSAGE.md) for detailed information. 
 
 
-Essentially the application allows the user to collect publications by searching for them at the top of the interface, collect them via one or more organisations on the first tab, or from persons on the second tab. The third tab shows the outcome of these searches. Let's go over each tab:
+Essentially the application allows the user to collect publications by searching for them at the top of the interface, via one or more related organisations on the first tab, or from persons on the second tab. The third tab shows the outcome of these searches. Let's go over each tab:
 
 ![tab_1](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_1.png)
 
