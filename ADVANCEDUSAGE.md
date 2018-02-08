@@ -20,9 +20,21 @@ The PureImportModifications.xslt file is what I used to modify the export file o
 
 ## Working with files
 
-The conversion from export to import should cover all the fields in the record metadata, including links such as DOI's. The full text files however is where it gets complicated. When you export an xml file with metadata, the file will mention all full text files to their current location in Pure. So whatever you do, DO NOT DELETE the records right away after exporting the xml. If you export a set of records, and then import it right away from the bulk importer, the importer will notice the file references in the xml and essentially copy the records in Pure along with the copied metadata. After the bulk importer has finished loading, the file copy is also complete and at that time you could delete the originals (at your own risk). Also worth to note here is that if you have the full text cover option enabled, the bulk importer will load the pdf from pure, generate a cover, save the new pdf with cover, and then a pdf will be shown from pure with 2 covers, which is not what we want. So when copying records, make sure to turn off the cover function. 
+The conversion from export to import should cover all the fields in the record metadata, including links such as DOI's. The full text files however is where it gets complicated. When you export an xml file with metadata, the file will mention all full text files to their current location in Pure. So whatever you do, DO NOT DELETE the records right away after exporting the xml. If you export a set of records, and then import it right away from the bulk importer, the importer will notice the file references in the xml and essentially copy the records in Pure along with the copied metadata. After the bulk importer has finished loading, the file copy is also complete and at that time you could delete the originals (at your own risk). This requires you to be able to filter the old versions versus the new ones in the Pure interface. 
 
-It is also possible to turn on downloading of full text files along with the saved metadata xml. Alongside the import- and export files there will be a folder containing all the full text files. Optionally you can specify a location for these files that will be stored in the metadata. This can be used to export a set of metadata plus full text from Pure, where the metadata references a temporary location .e.g "http://mystorageserver.com/pdf/document1.pdf". The pdf's can then be placed at that location and the metadata imported in the bulk loader will reference that location for the files. Also make sure to turn off cover sheets. 
+Also worth to note here is that if you have the full text cover option enabled, the bulk importer will load the pdf from pure, generate a cover, save the new pdf with cover, and then a pdf will be shown from pure with duplicate covers (one hardcoded one generated), which is not what we want. So when copying records, make sure to turn off the cover function. 
+
+It is also possible to turn on downloading of full text files along with the saved metadata xml (on the settings tab). Alongside the import- and export files there will be a folder containing all the full text files. Optionally you can specify a location for these files that will be stored in the metadata. This can be used to export a set of metadata plus full text from Pure, where the metadata references a temporary location, e.g. "http://mystorageserver.com/pdf/document1.pdf".
+
+![filesettings_1](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/filesettings_1.png)
+
+Switch the option on and type your required url in the box. The exportsetname is coming from the publications tab:
+
+![filesettings_2](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/filesettings_2.png)
+
+
+
+The pdf's can then be placed at that location and the metadata imported in the bulk loader will reference that location for the files. Also make sure to turn off cover sheets. 
 
 
 
