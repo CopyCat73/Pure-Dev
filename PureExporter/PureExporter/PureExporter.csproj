@@ -48,16 +48,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>56E6253833858A067B14B6F847A0AC34166E0157</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>53DC573923E15B1B62D54CC43A9139DB3936551C</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>PureExporter_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>PureExporter_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\yunocrud.ico</ApplicationIcon>
@@ -139,7 +139,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="PureExporter_TemporaryKey.pfx" />
+    <None Include="PureExporter_1_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\App.config" />
@@ -168,14 +168,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Conversion definitons\PureApiToImport.xslt">
-      <Link>PureApiToImport.xslt</Link>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="..\Conversion definitons\PureImportModifications.xslt">
-      <Link>PureImportModifications.xslt</Link>
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="PureApiToImport.xslt" />
+    <None Include="PureImportModifications.xslt" />
     <Content Include="Resources\702-share.ico" />
     <Content Include="Resources\yunocrud.ico" />
     <Content Include="Resources\yunocrud.png" />

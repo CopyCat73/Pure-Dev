@@ -15,26 +15,26 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_260D5F0763DE0FBD6F3FA781C505B60D"
+        "MsmKey" = "8:_01BD006D8F2C83D7D796A260EE3B3092"
         "OwnerKey" = "8:_853D633D8DD54804B45BB5E73D733991"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_308BFB72B5EB150F7672C131AC02D651"
-        "OwnerKey" = "8:_853D633D8DD54804B45BB5E73D733991"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_633560C454C2B71CFDD8CE72FB5C362B"
-        "OwnerKey" = "8:_853D633D8DD54804B45BB5E73D733991"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_64A7BCE9E64C484DBCADEA4B236AE021"
+        "MsmKey" = "8:_0236DC2A3DA2424E8CBD68754F55891A"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2C6F0C8683FA403BA77E75B2AEC8939F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_466DEBECC96575941AE38413E6D24D1F"
+        "OwnerKey" = "8:_853D633D8DD54804B45BB5E73D733991"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -45,26 +45,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B87621B3149E4FB9A3FE02D9B51F9A56"
+        "MsmKey" = "8:_9DA8160F2380AD6F3090D0F9B2004ECA"
+        "OwnerKey" = "8:_853D633D8DD54804B45BB5E73D733991"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A0C9B52A454C45388219AE15461E9852"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_DC15623DD55740C58A20B6A056587160"
+        "MsmKey" = "8:_A55FCD484DF94F75870C77A70E2BAA29"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E42636F9E0F945409677FA1BAD81BE77"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_633560C454C2B71CFDD8CE72FB5C362B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,13 +70,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_260D5F0763DE0FBD6F3FA781C505B60D"
+        "OwnerKey" = "8:_01BD006D8F2C83D7D796A260EE3B3092"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_308BFB72B5EB150F7672C131AC02D651"
+        "OwnerKey" = "8:_9DA8160F2380AD6F3090D0F9B2004ECA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_466DEBECC96575941AE38413E6D24D1F"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -103,6 +103,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -119,6 +135,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -148,14 +180,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_260D5F0763DE0FBD6F3FA781C505B60D"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_01BD006D8F2C83D7D796A260EE3B3092"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_260D5F0763DE0FBD6F3FA781C505B60D"
+                    "_01BD006D8F2C83D7D796A260EE3B3092"
                     {
                     "Name" = "8:RestSharp.dll"
                     "Attributes" = "3:512"
@@ -179,23 +211,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_308BFB72B5EB150F7672C131AC02D651"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0236DC2A3DA2424E8CBD68754F55891A"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_308BFB72B5EB150F7672C131AC02D651"
-                    {
-                    "Name" = "8:Newtonsoft.Json.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Newtonsoft.Json.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\Conversion definitions\\commons.xsd"
+            "TargetName" = "8:commons.xsd"
             "Tag" = "8:"
-            "Folder" = "8:_29FEAFA4677F40A983448B2175C3D968"
+            "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -207,17 +228,37 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_633560C454C2B71CFDD8CE72FB5C362B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2C6F0C8683FA403BA77E75B2AEC8939F"
+            {
+            "SourcePath" = "8:..\\Conversion definitions\\publication.xsd"
+            "TargetName" = "8:publication.xsd"
+            "Tag" = "8:"
+            "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_466DEBECC96575941AE38413E6D24D1F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Mvp.Xml, Version=2.3.0.0, Culture=neutral, PublicKeyToken=6ead800d778c9b9f, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_633560C454C2B71CFDD8CE72FB5C362B"
+                    "_466DEBECC96575941AE38413E6D24D1F"
                     {
                     "Name" = "8:Mvp.Xml.dll"
                     "Attributes" = "3:512"
@@ -241,9 +282,40 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_64A7BCE9E64C484DBCADEA4B236AE021"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9DA8160F2380AD6F3090D0F9B2004ECA"
             {
-            "SourcePath" = "8:..\\Conversion definitons\\PureImportModifications.xslt"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_9DA8160F2380AD6F3090D0F9B2004ECA"
+                    {
+                    "Name" = "8:Newtonsoft.Json.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Newtonsoft.Json.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_29FEAFA4677F40A983448B2175C3D968"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A0C9B52A454C45388219AE15461E9852"
+            {
+            "SourcePath" = "8:..\\Conversion definitions\\PureImportModifications.xslt"
             "TargetName" = "8:PureImportModifications.xslt"
             "Tag" = "8:"
             "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
@@ -261,50 +333,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B87621B3149E4FB9A3FE02D9B51F9A56"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A55FCD484DF94F75870C77A70E2BAA29"
             {
-            "SourcePath" = "8:..\\Conversion definitons\\PureApiToImport.xslt"
+            "SourcePath" = "8:..\\Conversion definitions\\PureApiToImport.xslt"
             "TargetName" = "8:PureApiToImport.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DC15623DD55740C58A20B6A056587160"
-            {
-            "SourcePath" = "8:..\\Conversion definitons\\publication.xsd"
-            "TargetName" = "8:publication.xsd"
-            "Tag" = "8:"
-            "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E42636F9E0F945409677FA1BAD81BE77"
-            {
-            "SourcePath" = "8:..\\Conversion definitons\\commons.xsd"
-            "TargetName" = "8:commons.xsd"
             "Tag" = "8:"
             "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
             "Condition" = "8:"
@@ -389,7 +421,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PureExporter"
         "ProductCode" = "8:{A55DD74C-E91C-435C-B8CB-456F50D07BA2}"
-        "PackageCode" = "8:{7D6B2CB5-DF94-4F84-8CA8-97C3947534A9}"
+        "PackageCode" = "8:{C85A08B3-369A-45E1-90CE-E5F0F0768D56}"
         "UpgradeCode" = "8:{01763F72-BDB6-4249-944D-6E525C745671}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -952,7 +984,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_853D633D8DD54804B45BB5E73D733991"
             {
-            "SourcePath" = "8:..\\PureExporter\\obj\\Release\\PureExporter.exe"
+            "SourcePath" = "8:..\\PureExporter\\obj\\Debug\\PureExporter.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_29FEAFA4677F40A983448B2175C3D968"

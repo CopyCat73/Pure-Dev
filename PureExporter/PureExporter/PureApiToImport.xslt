@@ -13,8 +13,8 @@
       </xsl:call-template>
     </xsl:attribute>
     
-    <!-- ID todo: fallback indien geen metis -->
-    <xsl:attribute name="id">
+    <!-- uncomment when original source ID is preferred as record ID
+     <xsl:attribute name="id">
       <xsl:choose>
         <xsl:when test="./externalableInfo/sourceId/text()">
           <xsl:value-of select="./externalableInfo/sourceId/text()" />
@@ -23,7 +23,10 @@
           <xsl:value-of select="./@uuid" />
         </xsl:otherwise>
       </xsl:choose>
-    </xsl:attribute>
+    </xsl:attribute>-->
+
+    <!-- Record ID from uuid -->
+    <xsl:attribute name="id">copy of <xsl:value-of select="./@uuid" /></xsl:attribute>
 
     <!-- Fields appear in correct sequence for import. Do not move them around -->
 
@@ -105,11 +108,21 @@
       </language>
     </xsl:if>
 
-    <!-- Title : API output has no locale?-->
+    <!-- Title -->
     <xsl:if test="./title/text()">
       <title>
-        <ns2:text lang="en" country="GB">
-          copy of <xsl:value-of select="./title" />
+        <ns2:text>
+          <xsl:attribute name="lang">
+            <xsl:call-template name="GetLastSegmentBeforeUnderscore">
+              <xsl:with-param name="value" select="./language/@uri"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:attribute name="country">
+            <xsl:call-template name="GetLastSegmentAfterUnderscore">
+              <xsl:with-param name="value" select="./language/@uri"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:value-of select="./title" />
         </ns2:text>
       </title>
     </xsl:if>
@@ -117,7 +130,17 @@
     <!-- Subtitle : API output has no locale?-->
     <xsl:if test="./subTitle/text()">
       <subTitle>
-        <ns2:text lang="en">
+        <ns2:text>
+          <xsl:attribute name="lang">
+            <xsl:call-template name="GetLastSegmentBeforeUnderscore">
+              <xsl:with-param name="value" select="./language/@uri"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:attribute name="country">
+            <xsl:call-template name="GetLastSegmentAfterUnderscore">
+              <xsl:with-param name="value" select="./language/@uri"/>
+            </xsl:call-template>
+          </xsl:attribute>
           <xsl:value-of select="./subTitle" />
         </ns2:text>
       </subTitle>
@@ -151,43 +174,12 @@
               </xsl:call-template>
             </role>
             <xsl:choose>
-              <!-- no type indicator for internal persons, just check if not external -->
-              <xsl:when test=".//type[@locale='en_GB']/@uri != '/dk/atira/pure/externalperson/externalpersontypes/externalperson/externalperson'">
-                <person>
-                  <xsl:attribute name="id">
-                    <xsl:value-of select=".//person/@uuid" />
-                  </xsl:attribute>
-                  <xsl:attribute name="external">false</xsl:attribute>
-                  <firstName>
-                    <xsl:value-of select="./name/firstName"/>
-                  </firstName>
-                  <lastName>
-                    <xsl:value-of select="./name/lastName"/>
-                  </lastName>
-                </person>
-                <xsl:if test=".//organisationalUnits/child::node()">
-                  <organisations>
-                    <xsl:for-each select=".//organisationalUnit">
-                      <organisation>
-                        <xsl:attribute name="id">
-                          <xsl:value-of select="./@uuid"/>
-                        </xsl:attribute>
-                        <name>
-                          <ns2:text>
-                            <xsl:value-of select="./name[@locale='en_GB']"/>
-                          </ns2:text>
-                        </name>
-                      </organisation>
-                    </xsl:for-each>
-                  </organisations>
-                </xsl:if>
-              </xsl:when>
               <xsl:when test=".//type[@locale='en_GB']/@uri='/dk/atira/pure/externalperson/externalpersontypes/externalperson/externalperson'">
                 <person>
                   <xsl:attribute name="id">
                     <xsl:value-of select="./externalPerson/@uuid" />
                   </xsl:attribute>
-                  <xsl:attribute name="external">true</xsl:attribute>
+                  <xsl:attribute name="origin">external</xsl:attribute>
                   <firstName>
                     <xsl:value-of select="./name/firstName"/>
                   </firstName>
@@ -195,9 +187,9 @@
                     <xsl:value-of select="./name/lastName"/>
                   </lastName>
                 </person>
-                <xsl:if test=".//organisationalUnits/child::node()">
+                <xsl:if test=".//externalOrganisations/child::node()">
                   <organisations>
-                    <xsl:for-each select=".//organisationalUnit">
+                    <xsl:for-each select=".//externalOrganisation">
                       <organisation>
                         <xsl:attribute name="id">
                           <xsl:value-of select="./@uuid"/>
@@ -212,8 +204,49 @@
                   </organisations>
                 </xsl:if>
               </xsl:when>
+              <!-- no type indicator for internal persons, just check if not external -->
               <xsl:otherwise>
-              </xsl:otherwise>
+                <person>
+                  <xsl:attribute name="id">
+                    <xsl:value-of select=".//person/@uuid" />
+                  </xsl:attribute>
+                  <xsl:attribute name="origin">internal</xsl:attribute>
+                  <firstName>
+                    <xsl:value-of select="./name/firstName"/>
+                  </firstName>
+                  <lastName>
+                    <xsl:value-of select="./name/lastName"/>
+                  </lastName>
+                </person>
+                <xsl:if test=".//organisationalUnits/child::node() or .//externalOrganisations/child::node()">
+                  <organisations>
+                    <xsl:for-each select=".//organisationalUnit">
+                      <organisation>
+                        <xsl:attribute name="id">
+                          <xsl:value-of select="./@uuid"/>
+                        </xsl:attribute>
+                        <name>
+                          <ns2:text>
+                            <xsl:value-of select="./name[@locale='en_GB']"/>
+                          </ns2:text>
+                        </name>
+                      </organisation>
+                    </xsl:for-each>
+                    <xsl:for-each select=".//externalOrganisation">
+                      <organisation>
+                        <xsl:attribute name="id">
+                          <xsl:value-of select="./@uuid"/>
+                        </xsl:attribute>
+                        <name>
+                          <ns2:text>
+                            <xsl:value-of select="./name[@locale='en_GB']"/>
+                          </ns2:text>
+                        </name>
+                      </organisation>
+                    </xsl:for-each>
+                  </organisations>
+                </xsl:if>
+              </xsl:otherwise>              
             </xsl:choose>
           </author>
         </xsl:for-each>
@@ -319,7 +352,9 @@
             </xsl:if>
             <xsl:if test="./linkType[@locale='en_GB']/@uri">
               <type>
-                <xsl:value-of select="./linkType[@locale='en_GB']/@uri"/>
+                <xsl:call-template name="GetLastSegment">
+                  <xsl:with-param name="value" select="./linkType[@locale='en_GB']/@uri"/>
+                </xsl:call-template>
               </type>
             </xsl:if>
           </url>
@@ -339,11 +374,11 @@
                 </xsl:call-template>
               </version>
               <xsl:if test="./licenseType/text()">
-                <license>
+                <licence>
                   <xsl:call-template name="GetLastSegment">
                     <xsl:with-param name="value" select="./licenseType[@locale='en_GB']/@uri"/>
                   </xsl:call-template>
-                </license>
+                </licence>
               </xsl:if>
               <publicAccess>
                 <xsl:call-template name="GetLastSegment">
@@ -375,11 +410,11 @@
                 </xsl:call-template>
               </version>
               <xsl:if test="./licenseType/text()">
-                <license>
+                <licence>
                   <xsl:call-template name="GetLastSegment">
                     <xsl:with-param name="value" select="./licenseType[@locale='en_GB']/@uri"/>
                   </xsl:call-template>
-                </license>
+                </licence>
               </xsl:if>
               <publicAccess>
                 <xsl:call-template name="GetLastSegment">
@@ -425,11 +460,11 @@
                 </xsl:call-template>
               </version>
               <xsl:if test="./licenseType/text()">
-                <license>
+                <licence>
                   <xsl:call-template name="GetLastSegment">
                     <xsl:with-param name="value" select="./licenseType[@locale='en_GB']/@uri"/>
                   </xsl:call-template>
-                </license>
+                </licence>
               </xsl:if>
               <publicAccess>
                 <xsl:call-template name="GetLastSegment">
@@ -474,7 +509,7 @@
         <xsl:for-each select="./bibliographicalNote">
           <bibliographicalNote>
             <ns2:text>
-              <xsl:attribute name="locale">
+              <xsl:attribute name="lang">
                 <xsl:value-of select="substring-before(./@locale,'_')"/>
               </xsl:attribute>
               <xsl:attribute name="country">
@@ -493,7 +528,7 @@
         <xsl:choose>
           <xsl:when test="./visibility[@locale='en_GB']/@key='FREE'">Public</xsl:when>
           <xsl:when test="./visibility[@locale='en_GB']/@key='CAMPUS'">Campus</xsl:when>
-          <xsl:when test="./visibility[@locale='en_GB']/@key='RESTRICTED'">Restricted</xsl:when>
+          <xsl:when test="./visibility[@locale='en_GB']/@key='BACKEND'">Restricted</xsl:when>
           <xsl:when test="./visibility[@locale='en_GB']/@key='CONFIDENTIAL'">Confidential</xsl:when>
           <xsl:otherwise>Unknown visibilty status!</xsl:otherwise>
         </xsl:choose>
@@ -531,6 +566,13 @@
     <!-- Comments are not present in API output 
     <comments/>
     -->
+
+    <comments>
+      <ns2:comment>
+        <ns2:username>nveenstra</ns2:username>
+        <ns2:text>Record has been modified for research programme cleanup</ns2:text>
+      </ns2:comment>
+    </comments>
 
     <!-- Related records are not implemented 
     <relatedPublications/>
@@ -589,7 +631,7 @@
     </chapterInBook>
   </xsl:template>
 
-  <xsl:template match="contributionToConference1">
+  <xsl:template match="contributionToConference">
     <contributionToConference>
       <xsl:call-template name="publicationType"/>
       <xsl:call-template name="pages"/>
@@ -1054,11 +1096,34 @@
       <thesisSupervisors>
         <xsl:for-each select="./supervisors/supervisor">
           <thesisSupervisor>
-            <person>
-              <xsl:attribute name="id">
-                <xsl:value-of select="./person/@uuid"/>
-              </xsl:attribute>
-            </person>
+          <xsl:choose>
+            <xsl:when test = "./externalPerson">
+              <person>
+                <xsl:attribute name="id">
+                  <xsl:value-of select="./externalPerson/@uuid"/>
+                </xsl:attribute>
+                <firstName>
+                  <xsl:value-of select="./name/firstName"/>
+                </firstName>
+                <lastName>
+                  <xsl:value-of select="./name/lastName"/>
+                </lastName>
+              </person>
+            </xsl:when>
+            <xsl:otherwise>
+              <person>
+                <xsl:attribute name="id">
+                  <xsl:value-of select="./person/@uuid"/>
+                </xsl:attribute>
+                <firstName>
+                  <xsl:value-of select="./name/firstName"/>
+                </firstName>
+                <lastName>
+                  <xsl:value-of select="./name/lastName"/>
+                </lastName>
+              </person>
+            </xsl:otherwise>
+          </xsl:choose>
               <role>
                 <xsl:call-template name="GetLastSegment">
                   <xsl:with-param name="value" select="./personRole/@uri"/>
@@ -1132,7 +1197,7 @@
     </xsl:if>
   </xsl:template>
 
-	<xsl:template name="GetLastSegment">
+  <xsl:template name="GetLastSegment">
 		<xsl:param name="value" />
 		<xsl:param name="separator" select="'/'" />
 		<xsl:choose>
@@ -1147,6 +1212,38 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
+
+  <xsl:template name="GetLastSegmentBeforeUnderscore">
+    <xsl:param name="value" />
+    <xsl:param name="separator" select="'/'" />
+    <xsl:choose>
+      <xsl:when test="contains($value, $separator)">
+        <xsl:call-template name="GetLastSegmentBeforeUnderscore">
+          <xsl:with-param name="value" select="substring-after($value, $separator)" />
+          <xsl:with-param name="separator" select="$separator" />
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="substring-before($value,'_')" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="GetLastSegmentAfterUnderscore">
+    <xsl:param name="value" />
+    <xsl:param name="separator" select="'/'" />
+    <xsl:choose>
+      <xsl:when test="contains($value, $separator)">
+        <xsl:call-template name="GetLastSegmentAfterUnderscore">
+          <xsl:with-param name="value" select="substring-after($value, $separator)" />
+          <xsl:with-param name="separator" select="$separator" />
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="substring-after($value,'_')" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
 	<xsl:template name="GetBeforeLastSegment">
 		<xsl:param name="value" />
