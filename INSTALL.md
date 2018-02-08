@@ -45,7 +45,10 @@ For the publication definition select the publication.xsd file.
 ![firstrun_6](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/firstrun_6.png)
 
 The conversion XSLT file is called PureApiToImport.xslt. The modification XSLT is called PureImportModifications.xslt.
+When to select each file the file dialog should open the XSLT folder and present the appropriate files. 
+
 ![firstrun_7](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/firstrun_7.png)
-The file settings should now show the same as in the screenshot above. You're now done setting up the app. 
+
+The file settings should now show the same as in the screenshot above. You're now done setting up the app! Sorry it's a bit lengthy but these files are needed later for custom exports.  
 
 Please refer to the usage [readme](https://github.com/CopyCat73/Pure-Dev/blob/master/USAGE.md) for further instructions. 
