@@ -5,7 +5,7 @@ This software is supplied "AS IS" without any warranties and support. I assume n
 
 This tool currently has two functions:
   - Export data from the Pure API in a format that can be read by the bulk importer. 
-  - Optional modification of the exported data using XHTML. 
+  - Optional modification of the exported data using XSLT. 
 
 ## For developers
 
