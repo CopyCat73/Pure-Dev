@@ -1,7 +1,5 @@
 # Pure Exporter tool
 -----
-
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 Disclaimer: 
 This software is supplied "AS IS" without any warranties and support. I assume no responsibility or liability for the use of the software, and also make no representation or warranty that this application will be suitable for the specified use without further testing or modification.
 -----
