@@ -1,1 +1,3 @@
 
+# Pure Exporter setup instructions
+
