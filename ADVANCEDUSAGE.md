@@ -4,6 +4,9 @@
 
 The main reason to construct this application was an issue we had with author affiliation. During the Pure implementation project, we mislabeled a number of organisations that in the previous CRIS were meant as placeholders for external publications. These placeholders were loaded in Pure as internal organisations, resulting in a large number of publications being affiliated to the university where they should not. Goal was to move these affiliations to a placeholder external organisation. This required a complex script to do the modifications, and while I have confidence in Elsevier staff for creating these kinds of scripts, I wanted to be in control (and save some euro's as well). 
 
+![Screenshot_ext_aut_solution.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/Screenshot_ext_aut_solution.png)
+
+
 ## Bulk editing
 
 Since Pure does not offer advanced bulk editing, theres is only one route do to complete manipulation of records in Pure:
