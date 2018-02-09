@@ -13,7 +13,7 @@ The organisation tab is initially empty. Click "refresh list" and you should see
 
 ![tab_1-1](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_1-1.png)
 
-Nodes can be expanded and collapsed. Select organisations using the checkbox. Clicking on a collapsed organisation will select all subnodes. When you have a large number of organisations in your Pure installation, it is posible to search by UUID. The relevant node will be shown for selection. 
+Nodes can be expanded and collapsed. Select organisations using the checkbox. Clicking on a collapsed organisation will select all subnodes. When you have a large number of organisations in your Pure installation, it is possible to search by UUID. The relevant node will be shown for selection. 
 
 ![tab_1-2](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_1-2.png)
 
@@ -25,7 +25,11 @@ On the "people" tab, authors can be searched. Use "get publications" to retrieve
 
 ![tab_2](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_2.png)
 
-The publications tab will contain the results from searches. Whenever you perform a search and there are already publications in the result list, the app will ask you if you want to merge them or overwrite the result list. Results can be filtered by type. By entering an export set name and clicking "export selected", an xml file containing the selected records will be downloaded. This file is ready to be imported by the Pure bulk import option, so it can be used to move metadata to other systems or even the same system (see the [advanced readme](https://github.com/CopyCat73/Pure-Dev/blob/master/ADVANCEDUSAGE.md)). 
+The publications tab will contain the results from searches. Whenever you perform a search and there are already publications in the result list, the app will ask you if you want to merge them or overwrite the result list.
+
+*Be aware that, depending on the type of API key you created, the list of publications may not be complete. A non admin key will not be able to deliver backend or confidential results to the Pure Exporter tool.*
+
+Results can be filtered by type. By entering an export set name and clicking "export selected", an xml file containing the selected records will be downloaded. This file is ready to be imported by the Pure bulk import option, so it can be used to move metadata to other systems or even the same system (see the [advanced readme](https://github.com/CopyCat73/Pure-Dev/blob/master/ADVANCEDUSAGE.md)). 
 
 ![tab_3](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_3.png)
 
