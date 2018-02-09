@@ -45,7 +45,7 @@ The settings tab has mostly been covered in the install readme. There are also t
 
 ![tab_6](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_6.png)
 
-If debugging is enabled on the settings tab, the debug tab will whos output for requests and/or responses. This is a nice way to learn about the api.
+If debugging is enabled on the settings tab, the debug tab will show output for requests and/or responses. This is a nice way to learn about the api.
 
 ![tab_7](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_7.png)
 
