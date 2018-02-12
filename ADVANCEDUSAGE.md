@@ -39,15 +39,15 @@ The file settings should now look like this:
 
 Click save. Now look up a record via the search, organisation tab or people tab. 
 
-![modificationexample_3.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/modificationexample_2.png)
+![modificationexample_3.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/modificationexample_3.png)
 
 Select one of the results by clicking on it (anywhere on the title is fine, no need to check). Then select "test conversion for selected record".
 
-![modificationexample_4.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/modificationexample_2.png)
+![modificationexample_4.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/modificationexample_4.png)
 
 On the record conversion screen, check the "apply modifications" option, and click the convert button. 
 
-![modificationexample_5.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/modificationexample_2.png)
+![modificationexample_5.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/modificationexample_5.png)
 
 The conversion is now using the example modification xslt, and prepends "Copy of" to each title found. The export option will now use this conversion and apply it to every record in the output file.   
 
