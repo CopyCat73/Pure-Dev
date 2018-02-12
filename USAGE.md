@@ -37,7 +37,7 @@ Clicking "Test conversion for selected record" takes you to the record conversio
 
 ![tab_4](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_4.png)
 
-The verify definitions tab compares the publication.xsd (the publications definition from Elsevier) to the PureApiToImport.xslt file to see if any fields in the xslt are still missing (they show up in red). This is an extra check when using [advanced options](https://github.com/CopyCat73/Pure-Dev/blob/master/ADVANCEDUSAGE.md) of the exporter. 
+The verify definitions tab compares the publication.xsd (the publications definition from Elsevier) to the PureApiToImport.xslt file to see if any fields in the xslt are still missing (they show up in red). When Elsevier makes changes to the API export or you change the PureApiToImport file, this tab can be used to compare both definitions. The fields in red are not found in the import conversion file and thus will not be converted.
 
 ![tab_5](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_5.png)
 
