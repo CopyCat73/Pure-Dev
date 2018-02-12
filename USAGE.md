@@ -40,7 +40,7 @@ The publications tab will contain the results from searches. Whenever you perfor
 
 Results can be filtered by type. Clicking "Test conversion for selected record" takes you to the record conversion tab (next tab). By entering an export set name and clicking "export selected", xml files containing the selected records will be downloaded. These files are ready to be imported by the Pure bulk import option, so they can be used to move metadata to other systems or even the same system (see the [advanced readme](https://github.com/CopyCat73/Pure-Dev/blob/master/ADVANCEDUSAGE.md)). 
 
-After selecting a location, the application will create a subfolder with the name of the export set. This folder will contain a subfolder with optional files (see [advanced readme](https://github.com/CopyCat73/Pure-Dev/blob/master/ADVANCEDUSAGE.md)) and two files:
+After selecting a location, the application will create a subfolder with the name of the export set. This folder will contain a subfolder with optional files and two files:
 
 1. exportsetname_importformat_unmodified: contains all exported record in bulk loader importformat but otherwise unchanged
 2. exportsetname_importformat_modified: contains all exported record in bulk loader importformat with changes as specified in the modification xslt
@@ -51,7 +51,7 @@ After selecting a location, the application will create a subfolder with the nam
 
 ![tab_4](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_4.png)
 
-Selecting "Test conversion for selected record" on the publications tab will take you to this tab and convert the selected publication for testing purposes. The upper text box shows the record as it is coming out of the Pure api, the lower box shows the converted record that is ready for import using the bulk loader. The "save import to file" button saves this single record as an import file. 
+Selecting "Test conversion for selected record" on the publications tab will take you to this tab and convert the selected publication for testing purposes. The upper text box shows the record as it is coming out of the Pure api, the lower box shows the converted record that is ready for import using the bulk loader. The "save import to file" button saves this single record as an import file. The "apply modifications" checkbox can be enabled to apply bulk XSLT conversions to the resulting conversion in the "Import" box. Please refer to the [advanced readme](https://github.com/CopyCat73/Pure-Dev/blob/master/ADVANCEDUSAGE.md) for more information about XSLT conversions. 
 
 ## Verify definitions tab
 
