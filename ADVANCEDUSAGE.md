@@ -49,7 +49,7 @@ On the record conversion screen, check the "apply modifications" option, and cli
 
 ![modificationexample_5.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/modificationexample_5.png)
 
-The conversion is now using the example modification xslt, and prepends "Copy of" to each title found. The export option will now use this conversion and apply it to every record in the output file.   
+The conversion is now using the example modification xslt, and prepends "Copy of" to each title found. The export option will now use this conversion and apply it to every record in the output file. It is recommended to have basic knowledge about XSLT and preferrably also XPath before using the export modification options.
 
 
 ## Working with files
