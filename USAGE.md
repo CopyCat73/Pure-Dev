@@ -33,7 +33,7 @@ Results can be filtered by type. By entering an export set name and clicking "ex
 
 ![tab_3](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_3.png)
 
-Clicking "Test conversion for selected record" takes you to the record conversion tab (shown below). The upper text box shows the record as it is coming out of the Pure api, the lower box shows the converted record that is ready for import using the bulk loader. The "save import to file" button saves this single record as an import file. Clicking the "export checked" button on the publications tab (shown above) gives the option to save multiple publications to a folder on your computer. 
+Clicking "Test conversion for selected record" takes you to the record conversion tab (next screenshot). Clicking the "export checked" button on the publications tab (shown above) gives the option to save multiple publications to a folder on your computer. 
 
 ![export_example](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/export_example.png)
 
@@ -44,21 +44,23 @@ After selecting a location, the application will create a subfolder with the nam
 
 ![tab_4](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_4.png)
 
-The verify definitions tab compares the publication.xsd (the publications definition from Elsevier) to the PureApiToImport.xslt file to see if any fields in the xslt are still missing (they show up in red). When Elsevier makes changes to the API export or you change the PureApiToImport file, this tab can be used to compare both definitions. The fields in red are not found in the import conversion file and thus will not be converted.
+The upper text box shows the record as it is coming out of the Pure api, the lower box shows the converted record that is ready for import using the bulk loader. The "save import to file" button saves this single record as an import file. 
 
 ![tab_5](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_5.png)
 
-The settings tab has mostly been covered in the install readme. There are also two options for debugging: requests and responses can be debugged and shown on the debug tab. On the bottom there is an option to download files with each export. Please consult the [advanced readme](https://github.com/CopyCat73/Pure-Dev/blob/master/ADVANCEDUSAGE.md) for the use of this option.
+The verify definitions tab compares the publication.xsd (the publications definition from Elsevier) to the PureApiToImport.xslt file to see if any fields in the xslt are still missing (they show up in red). When Elsevier makes changes to the API export or you change the PureApiToImport file, this tab can be used to compare both definitions. The fields in red are not found in the import conversion file and thus will not be converted.
 
 ![tab_6](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_6.png)
 
-If debugging is enabled on the settings tab, the debug tab will show output for requests and/or responses. This is a nice way to learn about the api.
+The settings tab has mostly been covered in the install readme. There are also two options for debugging: requests and responses can be debugged and shown on the debug tab. On the bottom there is an option to download files with each export. Please consult the [advanced readme](https://github.com/CopyCat73/Pure-Dev/blob/master/ADVANCEDUSAGE.md) for the use of this option.
 
 ![tab_7](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_7.png)
 
-Finally there is the "about" tab. It contains some information and functions as my area of silent protest.
+If debugging is enabled on the settings tab, the debug tab will show output for requests and/or responses. This is a nice way to learn about the api.
 
 ![tab_8](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_8.png)
+
+Finally there is the "about" tab. It contains some information and functions as my area of silent protest.
 
 
 
