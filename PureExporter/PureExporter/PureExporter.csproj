@@ -169,7 +169,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PureApiToImport.xslt" />
-    <None Include="PureImportModifications.xslt" />
+    <None Include="PureImportModifications_TUE.xslt">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="PureImportModifications_Base.xslt" />
+    <Content Include="PureImportModifications_Example.xslt" />
     <Content Include="Resources\702-share.ico" />
     <Content Include="Resources\yunocrud.ico" />
     <Content Include="Resources\yunocrud.png" />
