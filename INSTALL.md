@@ -1,7 +1,9 @@
 
 # Pure Exporter setup instructions
 
-After unzipping the installer files to a folder, run setup.exe. You will be greeted by the welcome screen:
+After unzipping the installer files to a folder, run setup.exe. The installer might be blocked by Windows Smartscreen. In this case click on "more info" and start the installer from there. 
+
+Next you will be greeted by the welcome screen:
 
 ![setup_1](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/setup_1.png)
 
