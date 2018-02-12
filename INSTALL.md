@@ -36,7 +36,11 @@ Click save and if the api setup is correct, the status bar at the top should say
 
 ![firstrun_4](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/firstrun_4.png)
 
-Three customizable files are needed to handle imports and exports. Click on each "select" button and select the appropriate file. 
+The application needs a few files to work with metadata and conversions. A subfolder of the application called "Conversion definitions" contains these files and a few examples:
+
+![conversion_definitions](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/conversion_definitions.png)
+
+Click on each "select" button and select the appropriate file for each setting.
 
 ![firstrun_5](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/firstrun_5.png)
 
@@ -44,8 +48,8 @@ For the publication definition select the publication.xsd file.
 
 ![firstrun_6](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/firstrun_6.png)
 
-The conversion XSLT file is called PureApiToImport.xslt. The modification XSLT is called PureImportModifications.xslt.
-When to select each file the file dialog should open the XSLT folder and present the appropriate files. 
+The conversion XSLT file is called PureApiToImport.xslt. For the modification XSLT select PureImportModifications_Base.xslt.
+(when clicking the "select" button the file dialog should open the conversion definitions folder and present the appropriate files. 
 
 ![firstrun_7](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/firstrun_7.png)
 
