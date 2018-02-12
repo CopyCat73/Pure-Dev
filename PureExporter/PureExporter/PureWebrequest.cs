@@ -769,6 +769,26 @@ namespace PureExporter
             if (!e.Cancelled && e.Error == null)
             {
                 string XMLInput = Encoding.Default.GetString(e.Result);
+
+                if (Properties.Settings.Default.ExportDownloadFiles)
+                {
+                    if (Properties.Settings.Default.ExportDownloadURL == "")
+                    {
+                        mainForm.ShowMessage("File download has been enabled but no URL was defined.");
+                        mainForm.ProgressBar(false);
+                        return;
+                    }
+                    if (SaveFiles(XMLInput))
+                    {
+                        XMLInput = ModifyUrls(XMLInput, mainForm.GetExportSetName());
+                    }
+                    else
+                    {
+                        mainForm.ProgressBar(false);
+                        return;
+                    }
+                }
+                
                 string XMLOutput = DoConversionXSLT(XMLInput);
                 if (XMLOutput != "ERROR")
                 {
