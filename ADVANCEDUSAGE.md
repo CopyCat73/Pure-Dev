@@ -19,7 +19,38 @@ Honestly I wish the bulk importer could just read the api export format (Elsevie
 
 So then we have an importable file that can be read back into Pure. This means you could do some (bulk) editing in the file by hand and load it back into the bulk importer. The bulk importer even has an option to update existing records! But in practice this option isn't usable because any record that has been touched by a user cannot be updated anymore; you can never be sure to have updated all records. 
 
-The PureImportModifications.xslt file is what I used to modify the export file on the fly, also using XSLT. It applies general changes to all records and allows for some complex bulk editing logic. This XSLT can be modified to suit your own needs, and tested using the "apply modifications" option on the record conversion tab. 
+The PureImportModifications_TUE.xslt file is what I used to modify the export file on the fly, also using XSLT. It applies general changes to all records and allows for some complex bulk editing logic. This XSLT can be modified to suit your own needs, and tested using the "apply modifications" option on the record conversion tab. 
+
+## Basic examples to get started
+
+The conversion definitions folder contains a few files beginning with "PureImportModifications_":
+
+![conversion_definitions.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/conversion_definitions.png)
+
+The Base file just copies over all fields found and performs no alterations. The Example file changes the title for each converted record by prepending "Copy of" to each title field. When creating your own bulk edit conversion, make a copy of the base file and start editing the copy. If you want to try out the example file do the following:
+
+Go to the settings tab, and click the select button on the "modification XSLT" option. Select the example file:
+
+![modificationexample_1.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/modificationexample_1.png)
+
+The file settings should now look like this:
+
+![modificationexample_2.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/modificationexample_2.png)
+
+Click save. Now look up a record via the search, organisation tab or people tab. 
+
+![modificationexample_3.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/modificationexample_2.png)
+
+Select one of the results by clicking on it (anywhere on the title is fine, no need to check). Then select "test conversion for selected record".
+
+![modificationexample_4.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/modificationexample_2.png)
+
+On the record conversion screen, check the "apply modifications" option, and click the convert button. 
+
+![modificationexample_5.png](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/modificationexample_2.png)
+
+The conversion is now using the example modification xslt, and prepends "Copy of" to each title found. The export option will now use this conversion and apply it to every record in the output file.   
+
 
 ## Working with files
 
