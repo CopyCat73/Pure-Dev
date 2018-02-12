@@ -7,6 +7,8 @@ Note: the application can be used to perform bulk modifications on Pure data. Th
 
 Essentially the application allows the user to collect publications by searching for them at the top of the interface, via one or more related organisations on the first tab, or from persons on the second tab. The third tab shows the outcome of these searches. Let's go over each tab:
 
+## Organisations tab
+
 ![tab_1](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_1.png)
 
 The organisation tab is initially empty. Click "refresh list" and you should see an organisation tree appearing.
@@ -21,9 +23,14 @@ Clicking "Get publications" will start metadata retrieval from the api. This can
 
 ![activity_1](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/activity_1.png)
 
+
+## People tab
+
 ![tab_2](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_2.png)
 
 On the "people" tab, authors can be searched. Use "get publications" to retrieve related publications. 
+
+## Publications tab
 
 ![tab_3](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_3.png)
 
@@ -40,21 +47,31 @@ After selecting a location, the application will create a subfolder with the nam
 
 ![export_example](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/export_example.png)
 
+## Record conversion tab
+
 ![tab_4](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_4.png)
 
 Selecting "Test conversion for selected record" on the publications tab will take you to this tab and convert the selected publication for testing purposes. The upper text box shows the record as it is coming out of the Pure api, the lower box shows the converted record that is ready for import using the bulk loader. The "save import to file" button saves this single record as an import file. 
+
+## Verify definitions tab
 
 ![tab_5](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_5.png)
 
 The verify definitions tab compares the publication.xsd (the publications definition from Elsevier) to the PureApiToImport.xslt file to see if any fields in the xslt are still missing (they show up in red). When Elsevier makes changes to the API export or you change the PureApiToImport file, this tab can be used to compare both definitions. The fields in red are not found in the import conversion file and thus will not be converted.
 
+## Settings tab
+
 ![tab_6](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_6.png)
 
 The settings tab has mostly been covered in the install readme. There are also two options for debugging: requests and responses can be debugged and shown on the debug tab. On the bottom there is an option to download files with each export. Please consult the [advanced readme](https://github.com/CopyCat73/Pure-Dev/blob/master/ADVANCEDUSAGE.md) for the use of this option.
 
+## Debug tab
+
 ![tab_7](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_7.png)
 
 If debugging is enabled on the settings tab, the debug tab will show output for requests and/or responses. This is a nice way to learn about the api.
+
+## About tab
 
 ![tab_8](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_8.png)
 
