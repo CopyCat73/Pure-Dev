@@ -21,13 +21,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0236DC2A3DA2424E8CBD68754F55891A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2C6F0C8683FA403BA77E75B2AEC8939F"
+        "MsmKey" = "8:_1D6E8AF25EA74FD8956E36182FC15F31"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39,13 +33,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_478165A72C4545CAADE8EB9A659475A0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_83EBBF0636C14893811BA1C8A4B4AD76"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_853D633D8DD54804B45BB5E73D733991"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9CC88EF4BDCF481A95F963838D4DFD54"
+        "MsmKey" = "8:_8D1B668570CD46F09B3A1BAA581164DC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -57,19 +63,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A55FCD484DF94F75870C77A70E2BAA29"
+        "MsmKey" = "8:_9EE730F79A1641A7B56D05A0CF1F1DE8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BEE11D85357E4730A9391C02915FDB88"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C0512ABFD62E44EEB915A3B3D847F063"
+        "MsmKey" = "8:_E134C41DA75C416D81B443C73622696E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -223,30 +223,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0236DC2A3DA2424E8CBD68754F55891A"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1D6E8AF25EA74FD8956E36182FC15F31"
             {
-            "SourcePath" = "8:..\\Conversion definitions\\commons.xsd"
-            "TargetName" = "8:commons.xsd"
-            "Tag" = "8:"
-            "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2C6F0C8683FA403BA77E75B2AEC8939F"
-            {
-            "SourcePath" = "8:..\\Conversion definitions\\publication.xsd"
-            "TargetName" = "8:publication.xsd"
+            "SourcePath" = "8:..\\PureExporter\\PureImportModifications_TUE.xslt"
+            "TargetName" = "8:PureImportModifications_TUE.xslt"
             "Tag" = "8:"
             "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
             "Condition" = "8:"
@@ -294,10 +274,50 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9CC88EF4BDCF481A95F963838D4DFD54"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_478165A72C4545CAADE8EB9A659475A0"
             {
-            "SourcePath" = "8:..\\Conversion definitions\\PureImportModifications_Example.xslt"
+            "SourcePath" = "8:..\\PureExporter\\PureImportModifications_Base.xslt"
+            "TargetName" = "8:PureImportModifications_Base.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_83EBBF0636C14893811BA1C8A4B4AD76"
+            {
+            "SourcePath" = "8:..\\PureExporter\\PureImportModifications_Example.xslt"
             "TargetName" = "8:PureImportModifications_Example.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8D1B668570CD46F09B3A1BAA581164DC"
+            {
+            "SourcePath" = "8:..\\PureExporter\\publication.xsd"
+            "TargetName" = "8:publication.xsd"
             "Tag" = "8:"
             "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
             "Condition" = "8:"
@@ -345,50 +365,30 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A55FCD484DF94F75870C77A70E2BAA29"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9EE730F79A1641A7B56D05A0CF1F1DE8"
             {
-            "SourcePath" = "8:..\\Conversion definitions\\PureApiToImport.xslt"
+            "SourcePath" = "8:..\\PureExporter\\commons.xsd"
+            "TargetName" = "8:commons.xsd"
+            "Tag" = "8:"
+            "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E134C41DA75C416D81B443C73622696E"
+            {
+            "SourcePath" = "8:..\\PureExporter\\PureApiToImport.xslt"
             "TargetName" = "8:PureApiToImport.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BEE11D85357E4730A9391C02915FDB88"
-            {
-            "SourcePath" = "8:..\\Conversion definitions\\PureImportModifications_Base.xslt"
-            "TargetName" = "8:PureImportModifications_Base.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C0512ABFD62E44EEB915A3B3D847F063"
-            {
-            "SourcePath" = "8:..\\Conversion definitions\\PureImportModifications_TUE.xslt"
-            "TargetName" = "8:PureImportModifications_TUE.xslt"
             "Tag" = "8:"
             "Folder" = "8:_D8B17DD3FF284EFBB97BBE64336B6489"
             "Condition" = "8:"
@@ -473,7 +473,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PureExporter"
         "ProductCode" = "8:{A55DD74C-E91C-435C-B8CB-456F50D07BA2}"
-        "PackageCode" = "8:{C85A08B3-369A-45E1-90CE-E5F0F0768D56}"
+        "PackageCode" = "8:{07462D1D-F845-420A-836D-4A6E3667FBDF}"
         "UpgradeCode" = "8:{01763F72-BDB6-4249-944D-6E525C745671}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

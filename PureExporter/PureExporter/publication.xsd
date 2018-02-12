@@ -9,25 +9,35 @@
 
     <xs:element name="publications">
         <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="publication" maxOccurs="unbounded"/>
-            </xs:sequence>
+            <xs:choice maxOccurs="unbounded" minOccurs="1">
+                <xs:element ref="contributionToJournal" />
+                <xs:element ref="chapterInBook" />
+                <xs:element ref="contributionToConference" />
+                <xs:element ref="contributionToSpecialist" />
+                <xs:element ref="patent" />
+                <xs:element ref="other" />
+                <xs:element ref="book" />
+                <xs:element ref="workingPaper" />
+                <xs:element ref="nonTextual" />
+                <xs:element ref="memorandum" />
+                <xs:element ref="contributionToMemorandum" />
+                <xs:element ref="thesis" />
+            </xs:choice>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="publication" type="publicationType" abstract="true"/>
-    <xs:element name="contributionToJournal" type="contributionToJournalType" substitutionGroup="publication"/>
-    <xs:element name="chapterInBook" type="chapterInBookType" substitutionGroup="publication"/>
-    <xs:element name="contributionToConference" type="contributionToConferenceType" substitutionGroup="publication"/>
-    <xs:element name="contributionToSpecialist" type="contributionToSpecialistType" substitutionGroup="publication"/>
-    <xs:element name="patent" type="patentType" substitutionGroup="publication"/>
-    <xs:element name="other" type="otherType" substitutionGroup="publication"/>
-    <xs:element name="book" type="bookType" substitutionGroup="publication"/>
-    <xs:element name="workingPaper" type="workingPaperType" substitutionGroup="publication"/>
-    <xs:element name="nonTextual" type="nonTextualType" substitutionGroup="publication"/>
-    <xs:element name="memorandum" type="memorandumType" substitutionGroup="publication"/>
-    <xs:element name="contributionToMemorandum" type="contributionToMemorandumType" substitutionGroup="publication"/>
-    <xs:element name="thesis" type="thesisType" substitutionGroup="publication"/>
+    <xs:element name="contributionToJournal" type="contributionToJournalType" />
+    <xs:element name="chapterInBook" type="chapterInBookType" />
+    <xs:element name="contributionToConference" type="contributionToConferenceType" />
+    <xs:element name="contributionToSpecialist" type="contributionToSpecialistType" />
+    <xs:element name="patent" type="patentType" />
+    <xs:element name="other" type="otherType" />
+    <xs:element name="book" type="bookType" />
+    <xs:element name="workingPaper" type="workingPaperType" />
+    <xs:element name="nonTextual" type="nonTextualType" />
+    <xs:element name="memorandum" type="memorandumType" />
+    <xs:element name="contributionToMemorandum" type="contributionToMemorandumType" />
+    <xs:element name="thesis" type="thesisType" />
 
     <xs:complexType name="publicationType" abstract="true">
         <xs:sequence>
@@ -60,25 +70,15 @@
                 </xs:annotation>
             </xs:element>
 
-            <xs:choice>
-                <xs:element name="publicationStatus" type="commons:classification" minOccurs="1">
-                    <xs:annotation>
-                        <xs:documentation>This field is deprecated use publicationStatuses instead. Will be removed in
-                            5.5.0 (4.24.0) of Pure
-                        </xs:documentation>
-                        <xs:documentation>Classification /dk/atira/pure/publication/status</xs:documentation>
-                    </xs:annotation>
-                </xs:element>
-                <xs:element ref="publicationStatuses" minOccurs="1">
-                    <xs:annotation>
-                        <xs:documentation>List of publication status</xs:documentation>
-                    </xs:annotation>
-                </xs:element>
-            </xs:choice>
+            <xs:element ref="publicationStatuses" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>List of publication status</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="workflow" type="xs:string" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
-                        Used to set the workflow state of the publication (UK workflow states: forApproval, approved)
+                        Used to set the workflow state of the publication (workflow states: forApproval, approved and validated (If enabled in the Pure backend))
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -103,7 +103,11 @@
 
             <xs:element name="abstract" type="commons:localized_string" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>The publication abstract</xs:documentation>
+                    <xs:documentation><![CDATA[
+                        The publication abstract
+                        It is recommended that this field is wrapped in a CDATA field and that < and > characters are encoded to &gt; and &lt; if they aren't a part of HTML markup in the data.
+                    ]]>
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -124,15 +128,6 @@
                     <xs:documentation>The managing organisation of the publication, this must always be an internal
                         organisation in Pure
                     </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-
-            <xs:element name="publicationDate" type="commons:compoundDate" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>This field is deprecated use publicationStatuses instead. Will be removed in 5.5.0
-                        (4.24.0) of Pure
-                    </xs:documentation>
-                    <xs:documentation>The publication date</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -164,14 +159,6 @@
                 </xs:annotation>
             </xs:element>
 
-            <xs:element ref="documents" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>This field is deprecated use electronicVersions instead. Will be removed in 5.5.0
-                        (4.24.0) of Pure
-                    </xs:documentation>
-                    <xs:documentation>Full text document related to the publication</xs:documentation>
-                </xs:annotation>
-            </xs:element>
             <xs:element ref="existingStores" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
@@ -186,14 +173,6 @@
                         Should the content be transfered to the repository, only use if the Pure installation is
                         connected to a repository
                     </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element ref="dois" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>This field is deprecated use electronicVersions instead. Will be removed in 5.5.0
-                        (4.24.0) of Pure
-                    </xs:documentation>
-                    <xs:documentation>DOI's related to the publication</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="bibliographicalNotes" minOccurs="0">
@@ -219,7 +198,7 @@
             <xs:element ref="externalIds" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
-                        The visibility of the publication
+                        The external id(s) of the publication
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -248,9 +227,17 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="relatedPublications" type="commons:contentReferences" minOccurs="0" />
+            <xs:element name="relatedStudentTheses" type="commons:contentReferences" minOccurs="0" />
+            <xs:element name="relatedActivities" type="commons:contentReferences" minOccurs="0" />
+            <xs:element name="relatedClippings" type="commons:contentReferences" minOccurs="0" />
+            <xs:element name="relatedEquipment" type="commons:contentReferences" minOccurs="0" />
+            <xs:element name="relatedProjects" type="commons:contentReferences" minOccurs="0" />
+            <xs:element name="relatedDataSets" type="commons:contentReferences" minOccurs="0" />
+            <xs:element name="relatedImpacts" type="commons:contentReferences" minOccurs="0" />
         </xs:sequence>
 
-        <xs:attribute type="commons:string_1024" name="id" use="required">
+        <xs:attribute type="commons:string_400" name="id" use="required">
             <xs:annotation>
                 <xs:documentation>
                     The external ID of the publication, this must be an unique value
@@ -370,7 +357,7 @@
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
-                    <xs:element name="edition" type="commons:string_64" minOccurs="0">
+                    <xs:element name="edition" type="commons:string_1024" minOccurs="0">
                         <xs:annotation>
                             <xs:documentation>
                                 The edition of the host publication
@@ -693,17 +680,6 @@
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
-                    <xs:element name="commissioningBody" type="commons:externalOrganisationAssociation" minOccurs="0"
-                                maxOccurs="1">
-                        <xs:annotation>
-                            <xs:documentation>This field is deprecated use commissioningBodyExternalOrganisation
-                                instead. Will be removed in 5.5.0 (4.24.0) of Pure
-                            </xs:documentation>
-                            <xs:documentation>
-                                The commissioning body for the publication
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
                     <xs:element name="commissioningBodyExternalOrganisation" type="externalOrganisation" minOccurs="0"
                                 maxOccurs="1">
                         <xs:annotation>
@@ -851,6 +827,13 @@
         <xs:complexContent>
             <xs:extension base="publicationType">
                 <xs:sequence>
+                    <xs:element name="numberOfPages" type="xs:integer" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The number of pages in the contributed publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
                     <xs:element name="projectNumber" type="commons:string_64" minOccurs="0">
                         <xs:annotation>
                             <xs:documentation>
@@ -895,6 +878,13 @@
         <xs:complexContent>
             <xs:extension base="publicationType">
                 <xs:sequence>
+                    <xs:element name="numberOfPages" type="xs:integer" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The number of pages in the contributed publication
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
                     <xs:element name="projectNumber" type="commons:string_64" minOccurs="0">
                         <xs:annotation>
                             <xs:documentation>
@@ -946,17 +936,35 @@
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
-                    <xs:element name="awardingInstitution" type="organisation" minOccurs="0">
-                        <xs:annotation>
-                            <xs:documentation>
-                                The awarding institution
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
+                    <xs:choice>
+                        <xs:element name="awardingInstitution" type="organisation" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    DEPRECATED: This field is deprecated use the awardingInstitutions element instead. Will be removed in 5.9 of Pure
+
+                                    The awarding institution ellement
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="awardingInstitutions" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    List of awarding institutions
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:choice>
                     <xs:element ref="thesisSupervisors" minOccurs="0">
                         <xs:annotation>
                             <xs:documentation>
                                 The thesis supervisors
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="supervisorOrganisations" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The supervisor organisations
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
@@ -1056,6 +1064,13 @@
                             <xs:element name="authorContributionPercent" type="commons:percent" minOccurs="0"/>
                             <xs:element name="authorContributionDescription" type="xs:string" minOccurs="0"/>
                         </xs:all>
+                        <xs:attribute type="xs:boolean" name="hidden" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Indicates whether the author is hidden or not. A group author must be added in order for this to be enabled.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
@@ -1105,7 +1120,15 @@
             <xs:attribute type="xs:boolean" name="external" use="optional">
                 <xs:annotation>
                     <xs:documentation>
+                        DEPRECATED: This field is deprecated use the origin attribute instead. Will be removed in 5.8 of Pure
                         set to true if the person should be handled as an external person
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute type="origin" name="origin" use="optional" default="unknown" >
+                <xs:annotation>
+                    <xs:documentation>
+                        Can be used to indicate if a person is an internal or external person, if set to unknown we will try and match as internal first then external if no match.
                     </xs:documentation>
                 </xs:annotation>
             </xs:attribute>
@@ -1120,10 +1143,17 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="supervisorOrganisations">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="organisation" type="organisation" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:complexType name="organisation">
         <xs:sequence>
             <xs:element name="name" type="commons:localized_string" minOccurs="0"/>
-            <xs:element ref="nameVariants" minOccurs="0"/>
             <xs:element name="workflow" type="xs:string" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
@@ -1132,30 +1162,24 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="country" type="commons:classification" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Classification key from the scheme: /dk/atira/pure/core/countries
+                        Only used if this elements makes Pure create a new external organisation
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="subdivision" type="commons:classification" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Classification key from the scheme: /dk/atira/pure/core/countries/subdivision/
+                        Only used if this elements makes Pure create a new external organisation.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
         <xs:attributeGroup ref="id"/>
-    </xs:complexType>
-
-    <xs:element name="nameVariants">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="nameVariant" type="nameVariant" maxOccurs="unbounded"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
-    <xs:complexType name="nameVariant">
-        <xs:complexContent>
-            <xs:extension base="commons:localized_string">
-                <xs:attribute type="commons:classification" name="type" use="required">
-                    <xs:annotation>
-                        <xs:documentation>
-                            Classification scheme /dk/atira/pure/organisation/namevariants
-                        </xs:documentation>
-                    </xs:annotation>
-                </xs:attribute>
-            </xs:extension>
-        </xs:complexContent>
     </xs:complexType>
 
     <xs:element name="journal">
@@ -1172,7 +1196,7 @@
                 <xs:element name="printIssns" type="issns" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>
-                            The printed issns
+                            The printed issns (When this is provided both the title and issns have to match)
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
@@ -1183,6 +1207,7 @@
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
+                <xs:element ref="publisher" minOccurs="0" />
                 <xs:element name="workflow" type="xs:string" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>
@@ -1223,13 +1248,12 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="electronicVersion" type="electronicVersionType" abstract="true"/>
-
+    <xs:element name="electronicVersion" type="electronicVersionType" />
     <xs:element name="electronicVersionFile" type="electronicVersionFileType" substitutionGroup="electronicVersion"/>
     <xs:element name="electronicVersionDOI" type="electronicVersionDOIType" substitutionGroup="electronicVersion"/>
     <xs:element name="electronicVersionLink" type="electronicVersionLinkType" substitutionGroup="electronicVersion"/>
 
-    <xs:complexType name="electronicVersionType">
+    <xs:complexType name="electronicVersionType" abstract="true">
         <xs:sequence>
             <xs:element name="version" type="commons:classification" minOccurs="0">
                 <xs:annotation>
@@ -1292,6 +1316,7 @@
                     <xs:element name="rightsStatement" type="commons:string_1024" minOccurs="0">
                         <xs:annotation>
                             <xs:documentation>
+                                DEPRECATED: This field is deprecated. Will be removed in 5.8 of Pure
                                 If custom rights statements is enabled in the editor, this field can be used for
                                 importing the statements
                             </xs:documentation>
@@ -1409,7 +1434,14 @@
 
     <xs:complexType name="file">
         <xs:all>
-            <xs:element name="filename" type="commons:string_1024">
+            <xs:element name="filename" type="commons:string_1024" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        The file name that should be used for the file, if not provided one will be extracted from the fileLocation.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="fileLocation" type="commons:string_1024" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
                         HTTP, file, FTP is supported. HTTPS is supported only if the remote server uses a trusted
@@ -1420,6 +1452,20 @@
             </xs:element>
             <xs:element name="mimetype" type="commons:string_1024" minOccurs="0"/>
             <xs:element name="filesize" type="xs:long" minOccurs="0"/>
+            <xs:element name="depositDate" type="commons:date" minOccurs="0" >
+                <xs:annotation>
+                    <xs:documentation>
+                        The date the file was created in the original system, this is only used by REF2020 Open Access Compliance
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="accessDate" type="commons:date" minOccurs="0" >
+                <xs:annotation>
+                    <xs:documentation>
+                        The date the file was accessible in the original system, this is only used by REF2020 Open Access Compliance
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="source" type="commons:string_1024" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
@@ -1436,95 +1482,8 @@
                 </xs:annotation>
             </xs:element>
         </xs:all>
-        <xs:attribute type="commons:string_1024" name="id" use="optional"/>
+        <xs:attribute type="commons:string_400" name="id" use="optional"/>
     </xs:complexType>
-
-    <xs:element name="documents">
-        <xs:annotation>
-            <xs:documentation>This field is deprecated. Use electronicVersions instead. Will be removed in 5.5.0
-                (4.24.0) of Pure
-            </xs:documentation>
-        </xs:annotation>
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="document" maxOccurs="unbounded">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="type" type="commons:classification" minOccurs="0">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        Classification schema /dk/atira/pure/core/document/types
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
-                            <xs:element name="filename" type="commons:string_1024" minOccurs="0">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        Url for the document. File, HTTP and FTP is supported
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
-                            <xs:element name="filesize" type="xs:long" minOccurs="0">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        The filesize of the file
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
-                            <xs:element name="mimetype" type="commons:string_1024" minOccurs="0">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        The mimetype of the file, if not set default value will be used
-                                        application/octet-stream
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
-                            <xs:element name="version" type="commons:classification" minOccurs="0">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        Classification schema /dk/atira/pure/core/document/versiontypes
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
-                            <xs:element name="visibility" type="commons:visibility" minOccurs="0"/>
-
-                            <xs:element name="embargoDate" type="commons:date" minOccurs="0">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        Use if the publication has an embargo date the format is dd-mm-yyyy
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
-                            <xs:element name="rights" type="commons:string_1024" minOccurs="0">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        If the file should have a specific rights statement text
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
-                            <xs:element name="source" type="commons:string_1024" minOccurs="0">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        The name of the store that the full text is located in (used for files that will
-                                        be served from an external repository)
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
-                            <xs:element name="externalRepositoryState" type="externalRepositoryStateType" minOccurs="0">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        If the Pure installation is connected to a external repository as DSPace,
-                                        Eprints etc., this can be used to set the state of the document
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
-                        </xs:sequence>
-                        <xs:attribute type="xs:string" name="id" use="optional"/>
-                    </xs:complexType>
-                </xs:element>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
 
     <xs:element name="existingStores">
         <xs:complexType>
@@ -1789,8 +1748,8 @@
                 <xs:element name="workflow" type="xs:string" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>
-                            Used if the person is not matched to a person in Pure. It is then possible to set the
-                            workflow of the created external person
+                            Used if the publisher is not matched to a publisher in Pure. It is then possible to set the
+                            workflow of the created publisher
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
@@ -1874,6 +1833,11 @@
                         <xs:all>
                             <xs:element ref="person"/>
                             <xs:element name="role" type="xs:string" minOccurs="1"/>
+                            <xs:element ref="organisations" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Internal or external organisation related to the person, if the person is external the organisation cannot be an internal organisation</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
                         </xs:all>
                         <xs:attributeGroup ref="id"/>
                     </xs:complexType>
@@ -1882,10 +1846,18 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="awardingInstitutions">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element name="awardingInstitution" type="organisation" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:complexType name="externalOrganisation">
         <xs:sequence>
-            <xs:element name="name" type="commons:string_1024"/>
-            <xs:element name="type" type="commons:classification">
+            <xs:element name="name" type="commons:string_1024" minOccurs="0"/>
+            <xs:element name="type" type="commons:classification" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
                         Classification scheme /dk/atira/pure/ueoexternalorganisation/ueoexternalorganisationtypes
@@ -1896,6 +1868,14 @@
                 <xs:annotation>
                     <xs:documentation>
                         Classification scheme /dk/atira/pure/core/countries
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="subdivision" type="commons:classification" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Classification key from the scheme: /dk/atira/pure/core/countries/subdivision/
+                        Only used if this elements makes Pure create a new external organisation.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -1913,7 +1893,7 @@
 
     <xs:complexType name="publicationStatus">
         <xs:all>
-            <xs:element name="statusType" type="commons:classification" minOccurs="0">
+            <xs:element name="statusType" type="commons:classification" minOccurs="1">
                 <xs:annotation>
                     <xs:documentation>
                         Classification scheme /dk/atira/pure/publication/status
@@ -1925,7 +1905,7 @@
     </xs:complexType>
 
     <xs:attributeGroup name="id">
-        <xs:attribute name="id" type="commons:string_1024" use="optional">
+        <xs:attribute name="id" type="commons:string_400" use="optional">
             <xs:annotation>
                 <xs:documentation>
                     ID of the external entity. If it is not found in Pure, an element with this ID will be created for
@@ -1933,7 +1913,7 @@
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="source" type="commons:string_1024" use="optional">
+        <xs:attribute name="source" type="commons:string_400" use="optional">
             <xs:annotation>
                 <xs:documentation>
                     Source can be used to hint to Pure, when there are two entities that match during the ID search,
@@ -1982,4 +1962,11 @@
             <xs:documentation>APC paid is only supported if enabled in pure</xs:documentation>
         </xs:annotation>
     </xs:element>
+    <xs:simpleType name="origin">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="internal" />
+            <xs:enumeration value="external" />
+            <xs:enumeration value="unknown" />
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
