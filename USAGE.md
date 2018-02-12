@@ -21,30 +21,28 @@ Clicking "Get publications" will start metadata retrieval from the api. This can
 
 ![activity_1](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/activity_1.png)
 
+![tab_2](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_2.png)
+
 On the "people" tab, authors can be searched. Use "get publications" to retrieve related publications. 
 
-![tab_2](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_2.png)
+![tab_3](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_3.png)
 
 The publications tab will contain the results from searches. Whenever you perform a search and there are already publications in the result list, the app will ask you if you want to merge them or overwrite the result list.
 
 *Be aware that, depending on the type of API key you created, the list of publications may not be complete. A non admin key will not be able to deliver backend or confidential results to the Pure Exporter tool.*
 
-Results can be filtered by type. By entering an export set name and clicking "export selected", an xml file containing the selected records will be downloaded. This file is ready to be imported by the Pure bulk import option, so it can be used to move metadata to other systems or even the same system (see the [advanced readme](https://github.com/CopyCat73/Pure-Dev/blob/master/ADVANCEDUSAGE.md)). 
-
-![tab_3](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_3.png)
-
-Clicking "Test conversion for selected record" takes you to the record conversion tab (next screenshot). Clicking the "export checked" button on the publications tab (shown above) gives the option to save multiple publications to a folder on your computer. 
-
-![export_example](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/export_example.png)
+Results can be filtered by type. Clicking "Test conversion for selected record" takes you to the record conversion tab (next tab). By entering an export set name and clicking "export selected", xml files containing the selected records will be downloaded. These files are ready to be imported by the Pure bulk import option, so they can be used to move metadata to other systems or even the same system (see the [advanced readme](https://github.com/CopyCat73/Pure-Dev/blob/master/ADVANCEDUSAGE.md)). 
 
 After selecting a location, the application will create a subfolder with the name of the export set. This folder will contain a subfolder with optional files (see [advanced readme](https://github.com/CopyCat73/Pure-Dev/blob/master/ADVANCEDUSAGE.md)) and two files:
 
 1. exportsetname_importformat_unmodified: contains all exported record in bulk loader importformat but otherwise unchanged
 2. exportsetname_importformat_modified: contains all exported record in bulk loader importformat with changes as specified in the modification xslt
 
+![export_example](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/export_example.png)
+
 ![tab_4](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_4.png)
 
-The upper text box shows the record as it is coming out of the Pure api, the lower box shows the converted record that is ready for import using the bulk loader. The "save import to file" button saves this single record as an import file. 
+Selecting "Test conversion for selected record" on the publications tab will take you to this tab and convert the selected publication for testing purposes. The upper text box shows the record as it is coming out of the Pure api, the lower box shows the converted record that is ready for import using the bulk loader. The "save import to file" button saves this single record as an import file. 
 
 ![tab_5](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_5.png)
 
