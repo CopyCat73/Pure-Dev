@@ -19,7 +19,7 @@ Honestly I wish the bulk importer could just read the api export format (Elsevie
 
 So then we have an importable file that can be read back into Pure. This means you could do some (bulk) editing in the file by hand and load it back into the bulk importer. The bulk importer even has an option to update existing records! But in practice this option isn't usable because any record that has been touched by a user cannot be updated anymore; you can never be sure to have updated all records. 
 
-The PureImportModifications_TUE.xslt file is what I used to modify the export file on the fly, also using XSLT. It applies general changes to all records and allows for some complex bulk editing logic. This XSLT can be modified to suit your own needs, and tested using the "apply modifications" option on the record conversion tab. 
+The PureImportModifications xslt file is what I used to modify the export file on the fly. It applies general changes to all records and allows for some complex bulk editing logic. This XSLT can be modified to suit your own needs, and tested using the "apply modifications" option on the record conversion tab. Three versions are included with the source code.
 
 ## Basic examples to get started
 
