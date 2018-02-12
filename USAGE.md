@@ -33,7 +33,7 @@ Results can be filtered by type. By entering an export set name and clicking "ex
 
 ![tab_3](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_3.png)
 
-Clicking "Test conversion for selected record" takes you to the record conversion tab. The upper text box shows the record as it is coming out of the Pure api, the lower box shows the converted record that is ready for imprt using the bulk loader. The "save import to file" button saves this single record as an import file. Clicking the "export selected" button on the publications tab gives the option to save a bulk conversion to a folder on your computer. 
+Clicking "Test conversion for selected record" takes you to the record conversion tab (shown below). The upper text box shows the record as it is coming out of the Pure api, the lower box shows the converted record that is ready for imprt using the bulk loader. The "save import to file" button saves this single record as an import file. Clicking the "export selected" button on the publications tab (shown above) gives the option to save a bulk conversion to a folder on your computer. 
 
 ![export_example](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/export_example.png)
 
@@ -41,8 +41,6 @@ After selecting a location, the application will create a subfolder with the nam
 
 1. exportsetname_importformat_unmodified: contains all exported record in bulk loader importformat but otherwise unchanged
 2. exportsetname_importformat_modified: contains all exported record in bulk loader importformat with changes as specified in the modification xslt
-
-Next we have the verify definitions tab:
 
 ![tab_4](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/tab_4.png)
 
