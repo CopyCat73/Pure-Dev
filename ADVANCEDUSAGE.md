@@ -51,6 +51,10 @@ On the record conversion screen, check the "apply modifications" option, and cli
 
 The conversion is now using the example modification xslt, and prepends "Copy of" to each title found. The export option will now use this conversion and apply it to every record in the output file. It is recommended to have basic knowledge about XSLT and preferrably also XPath before using the export modification options.
 
+After modifying the modification xslt to your needs, and testing in the record conversion tab shows that everything works, you can start exporting sets on the publications tab. A set of two xml files and an optional file folder will be downloaded to your chosen location: 
+
+![export_example](https://raw.githubusercontent.com/CopyCat73/CopyCat73.github.io/master/export_example.png)
+
 
 ## Working with files
 
